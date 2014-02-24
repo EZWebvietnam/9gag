@@ -202,11 +202,11 @@ if (defined('ENVIRONMENT'))
  */
  if($_SERVER['SERVER_NAME'] == 'localhost')
  {
-     define('DB_NAME','diaoconline');
+     define('DB_NAME','9gag');
      define('DB_USER','root');
      define('DB_PASS','');
-     define('ROT_DIR','/diaoconline/');
-     define('BASE_URL','http://localhost/diaoconline/');
+     define('ROT_DIR','/9gag/');
+     define('BASE_URL','http://localhost/9gag/');
  }
  else
  {

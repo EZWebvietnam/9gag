@@ -1,0 +1,78 @@
+#rightColumn {
+				width: 300px;
+				float: right;
+				}
+				div.box {
+				margin: 0 0 10px 0;
+				padding: 10px 15px 5px;
+				background-color: white;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				box-shadow: 0 0 3px #AAA;
+				-moz-box-shadow: 0 0 3px #AAA;
+				-webkit-box-shadow: 0 0 3px #AAA;
+				}
+				div.darkBox {
+				background-color: #fff;;
+				text-shadow: 0 1px #EEE;
+				box-shadow: 0 0 3px #888;
+				-moz-box-shadow: 0 0 3px #888;
+				-webkit-box-shadow: 0 0 3px #888;
+				}
+				h3.topUsers {
+				background: url(http://s.haivl.com/content/images/smile_icon.png) no-repeat transparent;
+				padding-left: 22px;
+				float: left;
+				}
+				ul.topUsersSort {
+				float: right;
+				}
+				ul.topUsersSort li {
+				display: inline;
+				font-size: 14px;
+				font-weight: bold;
+				font-size: 13px;
+				font-style: italic;
+				}
+				ul.topUsersSortHome li {
+					font-style: italic
+				}
+				ul.topUsersSortHome a.selected {
+					color: #00A5F0;
+				}
+				div.topUsers {
+				font-weight: bold;
+				}
+				div.topUsers .item {
+				float: left;
+				width: 135px;
+				margin-bottom: 8px;
+				}
+				div.topUsers .item .info {
+				margin-left: 38px;
+				}
+				div.topUsers .name {
+				display: block;
+				margin-bottom: 3px
+				 white-space: nowrap;
+				overflow: hidden;
+				-moz-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				}
+				div.topUsers .itemWide 
+{
+    width: 215px
+}
+div.topUsers .item img {
+    width: 35px;
+    height: 35px;
+    float: left
+}
+				.likes {
+				background: url(http://s.haivl.com/content/images/like_icon.png) no-repeat transparent;
+				padding-left: 18px;
+				}
+				.clear {
+clear: both;
+}
