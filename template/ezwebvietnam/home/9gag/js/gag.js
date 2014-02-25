@@ -1626,7 +1626,7 @@ jQuery.noConflict();
                         }
                     }
                     if (s < j * 3) {
-                        GAG.FeaturedController.loadMorePosts()
+                       
                     }
                 }
             },
@@ -1672,32 +1672,6 @@ jQuery.noConflict();
                 b(r.selectors.LOADING_SPINNER).addClass("hide");
                 b.proxy(r.handlers.loadMoreScrollHandler(), r)
             }
-        },
-        loadMorePosts: function () {
-            var f = GAG.FeaturedController;
-            if (f._isLoading || f._noMoreItem) {
-                return
-            }
-            f._isLoading = true;
-            b(f.selectors.LOADING_SPINNER).removeClass("hide");
-            var e = b(f.selectors.ITEM_CONTAINER);
-            var g = e.data("list-key");
-            b.ajax({
-                type: "GET",
-                crossDomain: true,
-                dataType: "jsonp",
-                jsonpCallback: "data",
-                cache: "true",
-                url: f._endPoint + "read/ajax-featured?pageType=" + g + "&page=" + f._page,
-                success: function (h) {
-                    b.proxy(f.handlers.loadMoreAjaxCallbackHandler.call(f, h), f)
-                },
-                error: function () {
-                    f._noMoreItem = true;
-                    f._isLoading = false;
-                    b(f.selectors.LOADING_SPINNER).addClass("hide")
-                }
-            })
         },
         bindScrollEvents: function () {
             b(a).on("scroll resize", null, null, b.proxy(this.handlers.windowScrollHandler, this))
@@ -2106,13 +2080,13 @@ jQuery.noConflict();
             loadMoreScrollHandler: function () {
                 var e = b(a).height();
                 if (b(a).scrollTop() + e >= b(document).height() - e * 3) {
-                    this.loadMorePosts()
+
                 }
             },
             loadMoreLastEntryFocusHandler: function (g) {
                 var f = b(g.target);
                 if (b(this.selectors.ENTRY_CONTAINER).last().is(f)) {
-                    this.loadMorePosts()
+
                 }
             },
             archiveContainer: function (f, e) {
@@ -2287,39 +2261,7 @@ jQuery.noConflict();
                 this._isLoading = false
             }
         },
-        loadMorePosts: function () {
-            if (this._isLoading || this._bottomReached) {
-                return
-            }
-            var g = b(this.selectors.LOAD_MORE_BUTTON);
-            g.data("original-text", g.text());
-            g.text(g.data("loading-text"));
-            g.addClass("spin");
-            var f = g.prop("href");
-            this._isLoading = true;
-            if (typeof f != "undefined" && f != "") {
-                if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
-                    var e = new XMLHttpRequest();
-                    e.open("GET", f, true);
-                    e.setRequestHeader("Accept", "application/json, text/javascript, */*; q=0.01");
-                    e.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                    e.onreadystatechange = b.proxy(function () {
-                        if (e.readyState == 4 && e.status == 200) {
-                            var h = jQuery.parseJSON(e.responseText);
-                            console.log("loading more success");
-                            this.handlers.loadMoreAjaxHandler.call(this, h)
-                        } else {
-                            if (e.readyState == 4) {
-                                console.log("loading more error")
-                            }
-                        }
-                    }, this);
-                    e.send()
-                } else {
-                    b.getJSON(f, null, b.proxy(this.handlers.loadMoreAjaxHandler, this))
-                }
-            }
-        },
+        
         findLastEntryElement: function () {
             return this._listViewElement.find(this.selectors.ENTRY_LIST_CONTAINER).last();
             return this._listViewElement.find(this.selectors.ENTRY_CONTAINER).last()
