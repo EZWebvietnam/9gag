@@ -189,10 +189,11 @@
                         <div class="post-afterbar-a in-list-view">
                            <div class="share">
                               <ul>
+                              
                                  <li><a href="javascript:void(0);" class="badge-facebook-share badge-evt badge-track btn-share facebook"
                                     data-track="social,fb.s,,,d,av0RXNX,l"
                                     data-evt="Facebook-Share,ListClicked,<?php echo base_url();?><?php echo mb_strtolower(url_title(removesign($post['name_cate'])))?>-c<?php echo $post['id_cate']?>/<?php echo mb_strtolower(url_title(removesign($post['title'])))?>-p<?php echo $post['id_post']?>"
-                                    data-share="http://9gag.com/gag/av0RXNX?ref=fb.s">Facebook</a></li>
+                                    data-share="<?php echo base_url();?><?php echo mb_strtolower(url_title(removesign($post['name_cate'])))?>-c<?php echo $post['id_cate']?>/<?php echo mb_strtolower(url_title(removesign($post['title'])))?>-p<?php echo $post['id_post']?>">Facebook</a></li>
                                  <li><a href="javascript:void(0);" class="badge-twitter-share badge-evt badge-track btn-share twitter"
                                     data-track="social,t.s,,,d,av0RXNX,l"
                                     data-evt="Twitter-Share,ListClicked,http://9gag.com/gag/av0RXNX"
