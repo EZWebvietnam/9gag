@@ -106,7 +106,37 @@ class Tank_auth
 		}
 		return FALSE;
 	}
+    function login_social($id)
+    {
+        if(!empty($id) && is_numeric($id))
+        {
+            if(!is_null($user = $this->ci->users->get_user_by_login_id($id)))
+            {
+                if ($user->banned == 1) {									// fail - banned
+						$this->error = array('banned' => $user->ban_reason);
 
+					} else {
+						$this->ci->session->set_userdata(array(
+								'user_id'	=> $user->id,
+								'username'	=> $user->username,
+                                'full_name'	=> $user->full_name,
+                                'created'	=> $user->created,
+                                'email'=>$user->email,
+								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
+                                'role'=>$user->role,
+                                'img'=>$user->img,
+                                'login_id'=>$user->login_id
+						));
+                        $this->ci->users->update_login_info(
+									$user->id,
+									$this->ci->config->item('login_record_ip', 'tank_auth'),
+									$this->ci->config->item('login_record_time', 'tank_auth'));
+							return TRUE;
+                        }
+            }
+        }
+    return FALSE;
+    }
 	/**
 	 * Logout user from the site
 	 *
@@ -162,7 +192,46 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
+    /**
+     **/
+     function create_user_social($username,$password,$full_name,$email_activation,$role = 2,$account_type,$login_id,$img)
+     {
+        if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
+			$this->error = array('username' => 'auth_username_in_use');
 
+		} elseif (!$this->ci->users->is_email_available($username)) {
+			$this->error = array('email' => 'auth_email_in_use');
+
+		} else {
+		  $hasher = new PasswordHash(
+					$this->ci->config->item('phpass_hash_strength', 'tank_auth'),
+					$this->ci->config->item('phpass_hash_portable', 'tank_auth'));
+			$hashed_password = $hasher->HashPassword($password);
+            $data = array(
+				'username'	=> $username,
+				'password'	=> $hashed_password,
+				'email'		=> $username,
+                'full_name'=> $full_name,
+				'last_ip'	=> $this->ci->input->ip_address(),
+                'activated'=>1,
+                'role'=>$role,
+                'account_type'=>$account_type,
+                'login_id'=>$login_id,
+                'img'=>$img
+			);
+            if ($email_activation) {
+				$data['new_email_key'] = md5(rand().microtime());
+			}
+            if (!is_null($res = $this->ci->users->create_user($data, !$email_activation))) {
+				$data['user_id'] = $res['user_id'];
+				$data['password'] = $password;
+				unset($data['last_ip']);
+				return $data;
+			}
+        }
+        return NULL;
+     }
+     
 	/**
 	 * Create new user on the site and return some data about it:
 	 * user_id, username, password, email, new_email_key (if any).

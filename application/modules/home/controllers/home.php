@@ -5,6 +5,7 @@ class Home extends MY_Controller
     {
         parent::__construct();
         $this->load->model('postmodel');
+         $this->load->library('tank_auth');
     }
     public function index()
     {
@@ -32,8 +33,27 @@ class Home extends MY_Controller
             {
                 $token = $provider->access($this->input->get('code'));
                 $user = $provider->get_user_info($token);
-                echo "\n\nUser Info: ";
-                var_dump($user);
+                //echo "\n\nUser Info: ";
+                if(!empty($user))
+                {
+                    $this->load->model('users');
+                    $check_user = $this->users->get_user_by_login_id($user['uid']);
+                    if(empty($check_user))
+                    {
+                        
+                        $full_name = $user['name'];
+                        $pass = rand_string(6);
+                        $email_activation = $this->config->item('email_activation', 'tank_auth');
+                        $img = $user['image'];
+                        $this->tank_auth->create_user_social($user['email'],$pass,$full_name,$email_activation,2,1,$user['uid'],$img);
+                        $user = array();
+                    }
+                    else
+                    {
+                        $this->tank_auth->login_social($user['uid']);
+                    }
+                    print_r($this->session->userdata);exit;
+                }
             }
 
             catch (OAuth2_Exception $e)
@@ -66,8 +86,25 @@ class Home extends MY_Controller
             {
                 $token = $provider->access($this->input->get('code'));
                 $user = $provider->get_user_info($token);
-                echo "\n\nUser Info: ";
-                var_dump($user);
+                if(!empty($user))
+                {
+                    $this->load->model('users');
+                    $check_user = $this->users->get_user_by_login_id($user['uid_fb']);
+                    if(empty($check_user))
+                    {
+                        $full_name = $user['name_fb'];
+                        $pass = rand_string(6);
+                        $img = $user['image_fb'];
+                        $email_activation = $this->config->item('email_activation', 'tank_auth');
+                        $this->tank_auth->create_user_social($user['email'],$pass,$full_name,$email_activation,2,2,$user['uid_fb'],$img);
+                    }
+                    else
+                    {
+                        $this->tank_auth->login_social($user['uid_fb']);
+                    }
+                    print_r($this->session->userdata);exit;
+                }
+                $user = array();
             }
             catch (OAuth2_Exception $e)
             {
@@ -76,6 +113,9 @@ class Home extends MY_Controller
 
         }
     }
-     
+    public function _send_email($type,$to,&$data)
+	{
+        
+	} 
 }
 ?>
