@@ -821,56 +821,6 @@ jQuery.noConflict();
                     return h
                 }
             }
-        },
-        Connect: {
-            FB_CONNECT_CALLBACK_URL: "/connect/facebook-callback",
-            INIT_FAILURE_MESSAGE: "Facebook Connect is not enabled, please check if there's any browser plugin blocking the function.",
-            _additionalParams: {},
-            addParam: function (e, f) {
-                this._additionalParams[e] = f
-            },
-            _getConnectParamsString: function () {
-                var f = "";
-                var e = 0;
-                for (k in this._additionalParams) {
-                    f += (e == 0 ? "" : "&") + k + "=" + encodeURIComponent(this._additionalParams[k]);
-                    e++
-                }
-                return f
-            },
-            _getConnectUrl: function (f) {
-                var e = GAG.Facebook.Connect.FB_CONNECT_CALLBACK_URL;
-                e += "?" + this._getConnectParamsString();
-                return e
-            },
-            autoLogin: function (h) {
-                try {
-                    if (h == undefined || h == null) {
-                        h = "/"
-                    }
-                    var f = "https://" + GAG.Page.getDomain() + "/connect/auto-login";
-                    var g = "next=" + encodeURIComponent(h + "&" + this._getConnectParamsString());
-                    f += "?" + g;
-                    a.location = f
-                } catch (i) {
-                    if (b.browser.msie && parseInt(b.browser.version, 10) <= 8) {} else {}
-                    return
-                }
-            },
-            connect: function (h) {
-                try {
-                    if (h == undefined || h == null) {
-                        h = "/"
-                    }
-                    var f = "https://" + GAG.Page.getDomain() + "/connect/facebook";
-                    var g = "next=" + encodeURIComponent(h + "&" + this._getConnectParamsString());
-                    f += "?" + g;
-                    a.location = f
-                } catch (i) {
-                    if (b.browser.msie && parseInt(b.browser.version, 10) <= 8) {} else {}
-                    return
-                }
-            }
         }
     };
     a.fbAsyncInit = function () {
@@ -4578,23 +4528,7 @@ jQuery.noConflict();
                 b(this.selectors.DELETE_CONFIRM_FORM).removeClass("hide")
             }, this))
         },
-        bindFacebookConnectElements: function () {
-            b(this.selectors.LOGIN_FACEBOOK_CONNECT_BUTTON).on("click", b.proxy(function (h) {
-                h.preventDefault();
-                var g = b(this.selectors.LOGIN_FORM_NEXT_URL).val();
-                var i = {
-                    a: false,
-                    d: false,
-                    lo: false,
-                    dl: false
-                };
-                var f = JSON.stringify(i);
-                b.cookie("auto_log", f, {
-                    path: "/"
-                });
-                GAG.Facebook.Connect.connect(g)
-            }, this))
-        },
+       
         bindGplusConnectElements: function () {},
         bindResetForm: function () {
             b(this.selectors.RESET_SUBMIT_FROM).submit(b.proxy(function (f) {

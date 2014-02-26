@@ -376,8 +376,8 @@
                      <h2>Login</h2>
                      <p class="lead">Connect with a social network</p>
                      <div class="social-signup">
-                        <a class="btn-connect-option facebook badge-facebook-connect" href="<?php echo $facebook_url?>">Facebook</a>
-                        <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="<?php echo $link_google?>">Google</a></span> 
+                        <a class="btn-connect-option facebook badge-facebook-connect" href="<?php echo base_url();?>facebook-signup">Facebook</a>
+                        <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="<?php echo base_url();?>google-signup">Google</a></span> 
                      </div>
                      <form id="login-email" class="badge-login-form" action="https://9gag.com/login" method="POST">
                         <input type="hidden" id="jsid-login-form-csrftoken" name="csrftoken" value=""/>
@@ -406,8 +406,8 @@
                         <h2>Hey there!</h2>
                         <p class="lead">9GAG is your best source of fun. Share anything you find interesting, get real responses from people all over the world, and discover what makes you laugh.</p>
                         <div class="social-signup">
-                           <a class="btn-connect-option facebook badge-facebook-connect" href="#" onclick="GAG.GA.track('login-signup', 'facebook-connect', 'signup-form');">Facebook</a>
-                           <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="<?php echo $link_google?>">Google</a></span>
+                           <a class="btn-connect-option facebook badge-facebook-connect" href="<?php echo base_url();?>facebook-signup">Facebook</a>
+                           <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="<?php echo base_url();?>google-signup">Google</a></span>
                         </div>
                         <p class="alternative">Sign up with your <a href="#" class="badge-signup-email-link">Email Address</a></p>
                         <p class="alternative">Have an account? <a href="https://9gag.com/login?ref=" class="badge-signup-login-link">Login</a></p>
