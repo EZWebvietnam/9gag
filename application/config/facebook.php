@@ -16,7 +16,5 @@
 */
 
 // Facebook Config
-$config['facebook']						= TRUE;
-$config['facebook_app_id']				= '1111';
-$config['facebook_api_key'] 			= '1111';
-$config['facebook_secret_key'] 			= '1111';
+$config['appId']= '1450250688543704';
+$config['secret'] ='8d12d11ef3524c996c6f656b0cb833e9';

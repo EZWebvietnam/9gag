@@ -41,6 +41,7 @@
 $route['default_controller'] = "home/index";
 $route['trang-chu'] = "home/index";
 $route['google-signup'] = "home/google_signup";
+$route['facebook-signup'] = "home/facebook";
 $route['404_override'] = '';
 $route['admin'] = "admin/index/login";
 $route['admin/login'] = "admin/index/login";

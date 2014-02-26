@@ -23,12 +23,24 @@ class Home extends MY_Controller
             'pref/language',
             'pref/timezone',  
         );
-//  $openid->returnUrl = 'http://localhost/login_thirdparty/login_google.php';
-
-    $openid->returnUrl = base_url().'google-signup';
+		$fb_config = array(
+			'appId'  => '1450250688543704',
+			'secret' => '8d12d11ef3524c996c6f656b0cb833e9'
+		);
+		$this->load->library('facebook', $fb_config);
+		$user = $this->facebook->getUser();
+		$openid->returnUrl = base_url().'google-signup';
         $this->data['list_post']=$this->postmodel->load_home();
         $url = base_url().'google-signup';
         $this->data['link_google']=$openid->authUrl();
+		 if ($user) {
+	
+            $this->data['facebook_url'] = $this->facebook
+                ->getLogoutUrl();
+        } else {
+           $this->data['facebook_url'] = $this->facebook
+                ->getLoginUrl();
+        }
         $this->load->view('home_layout/home_index',$this->data);
     }
     public function google_signup()
@@ -67,7 +79,7 @@ class Home extends MY_Controller
     }
     public function facebook()
     {
-      $this->load->config('facebook');
+		/*$this->load->config('facebook');
 
 		$facebook_config = array(
 			'client_id' 	=> config_item('facebook_app_id'),
@@ -86,8 +98,32 @@ class Home extends MY_Controller
 			$auth_url = $this->facebook_oauth->getAuthorizeUrl();
             echo $auth_url;exit;
 			$this->data['result'] =  '<a href="'.$auth_url.'">'.$auth_url.'</a>';	
-		}
+		}*/
+		$fb_config = array(
+			'appId'  => '1450250688543704',
+			'secret' => '8d12d11ef3524c996c6f656b0cb833e9'
+		);
+		$this->load->library('facebook', $fb_config);
+		$user = $this->facebook->getUser();
+        if ($user) {
+		
+            try {
+                $data['user_profile'] = $this->facebook
+                    ->api('/me');
+				print_r($data['user_profile']);exit;
+            } catch (FacebookApiException $e) {
+                $user = null;
+            }
+        }
 
+        if ($user) {
+	
+            $data['logout_url'] = $this->facebook
+                ->getLogoutUrl();
+        } else {
+            $data['login_url'] = $this->facebook
+                ->getLoginUrl();
+        }
     }
 }
 ?>
