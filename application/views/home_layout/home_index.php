@@ -158,8 +158,19 @@
                            <div class="badge-entry-sticky-shadow sticky-action">
                               <div class="badge-entry-sticky">
                                  <ul class="badge-item-vote-container vertical-vote  ">
+                                 <?php 
+                                 //print_r($this->session->userdata('username')); exit;
+                        
+                                 if(!$this->tank_auth->is_logged_in())
+                                 {
+                                   
+                                 ?>
                                     <li><a class="badge-item-vote-up up" href="javascript:void(0);">Upvote</a></li>
                                     <li><a class="badge-item-vote-down down" href="javascript:void(0);">Downvote</a></li>
+                                    <?php } else {?>
+                                    <li><a class="vote-up up" >Upvote</a></li>
+                                    <li><a class="vote-down down">Downvote</a></li>
+                                    <?php } ?>
                                  </ul>
                                  <ul class="others">
                                     <li><a class="comment badge-evt badge-item-comment" target="_blank" href="/gag/av0RXNX#comment"
@@ -180,7 +191,7 @@
                               <ul>
                                  <li><a href="javascript:void(0);" class="badge-facebook-share badge-evt badge-track btn-share facebook"
                                     data-track="social,fb.s,,,d,av0RXNX,l"
-                                    data-evt="Facebook-Share,ListClicked,http://9gag.com/gag/av0RXNX"
+                                    data-evt="Facebook-Share,ListClicked,<?php echo base_url();?><?php echo mb_strtolower(url_title(removesign($post['name_cate'])))?>-c<?php echo $post['id_cate']?>/<?php echo mb_strtolower(url_title(removesign($post['title'])))?>-p<?php echo $post['id_post']?>"
                                     data-share="http://9gag.com/gag/av0RXNX?ref=fb.s">Facebook</a></li>
                                  <li><a href="javascript:void(0);" class="badge-twitter-share badge-evt badge-track btn-share twitter"
                                     data-track="social,t.s,,,d,av0RXNX,l"

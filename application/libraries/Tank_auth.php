@@ -23,13 +23,10 @@ class Tank_auth
 	function __construct()
 	{
 		$this->ci =& get_instance();
-
 		$this->ci->load->config('tank_auth', TRUE);
-
 		$this->ci->load->library('session');
 		$this->ci->load->database();
 		$this->ci->load->model('home/users');
-
 		// Try to autologin
 		$this->autologin();
 	}
@@ -70,14 +67,12 @@ class Tank_auth
 					} else {
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
+                                                                'file'=>$user->file,
 								'username'	=> $user->username,
-                                'full_name'	=> $user->full_name,
-                                'created'	=> $user->created,
-                                'email'=>$user->email,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
-                                'role'=>$user->role
 						));
-
+                                                $this->ci->session->sess_expiration = 60*60;
+                                                $this->ci->session->sess_expire_on_close = FALSE;
 						if ($user->activated == 0) {							// fail - not activated
 							$this->error = array('not_activated' => '');
 
@@ -112,10 +107,7 @@ class Tank_auth
         {
             if(!is_null($user = $this->ci->users->get_user_by_login_id($id)))
             {
-                if ($user->banned == 1) {									// fail - banned
-						$this->error = array('banned' => $user->ban_reason);
-
-					} else {
+                
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
@@ -127,12 +119,14 @@ class Tank_auth
                                 'img'=>$user->img,
                                 'login_id'=>$user->login_id
 						));
+                      
                         $this->ci->users->update_login_info(
 									$user->id,
 									$this->ci->config->item('login_record_ip', 'tank_auth'),
 									$this->ci->config->item('login_record_time', 'tank_auth'));
+                         
 							return TRUE;
-                        }
+                        
             }
         }
     return FALSE;
@@ -145,8 +139,10 @@ class Tank_auth
 	function logout()
 	{
 		$this->delete_autologin();
+
 		// See http://codeigniter.com/forums/viewreply/662369/ as the reason for the next line
 		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => ''));
+
 		$this->ci->session->sess_destroy();
 	}
 
@@ -158,20 +154,9 @@ class Tank_auth
 	 */
 	function is_logged_in($activated = TRUE)
 	{
-        return $this->ci->session->userdata('status') === ($activated ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED);
+	  
+		return $this->ci->session->userdata('status') === ($activated ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED);
 	}
-    function is_login_admin($activated = TRUE)
-    {
-        $array = $this->ci->users->get_user_role();
-        if(in_array($this->ci->session->userdata('role'),$array))
-        {
-            return $this->ci->session->userdata('status') === ($activated ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED);
-        }
-        else
-        {
-            return 0;
-        }
-    }
 
 	/**
 	 * Get user_id
@@ -192,46 +177,7 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
-    /**
-     **/
-     function create_user_social($username,$password,$full_name,$email_activation,$role = 2,$account_type,$login_id,$img)
-     {
-        if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
-			$this->error = array('username' => 'auth_username_in_use');
 
-		} elseif (!$this->ci->users->is_email_available($username)) {
-			$this->error = array('email' => 'auth_email_in_use');
-
-		} else {
-		  $hasher = new PasswordHash(
-					$this->ci->config->item('phpass_hash_strength', 'tank_auth'),
-					$this->ci->config->item('phpass_hash_portable', 'tank_auth'));
-			$hashed_password = $hasher->HashPassword($password);
-            $data = array(
-				'username'	=> $username,
-				'password'	=> $hashed_password,
-				'email'		=> $username,
-                'full_name'=> $full_name,
-				'last_ip'	=> $this->ci->input->ip_address(),
-                'activated'=>1,
-                'role'=>$role,
-                'account_type'=>$account_type,
-                'login_id'=>$login_id,
-                'img'=>$img
-			);
-            if ($email_activation) {
-				$data['new_email_key'] = md5(rand().microtime());
-			}
-            if (!is_null($res = $this->ci->users->create_user($data, !$email_activation))) {
-				$data['user_id'] = $res['user_id'];
-				$data['password'] = $password;
-				unset($data['last_ip']);
-				return $data;
-			}
-        }
-        return NULL;
-     }
-     
 	/**
 	 * Create new user on the site and return some data about it:
 	 * user_id, username, password, email, new_email_key (if any).
@@ -242,7 +188,7 @@ class Tank_auth
 	 * @param	bool
 	 * @return	array
 	 */
-	function create_user($username, $email, $password,$fullname,$phone,$role,$email_activation)
+	function create_user($username, $email, $password)
 	{
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
@@ -261,17 +207,11 @@ class Tank_auth
 				'username'	=> $username,
 				'password'	=> $hashed_password,
 				'email'		=> $email,
-                'full_name'=>$fullname,
-                'phone'=>$phone,
 				'last_ip'	=> $this->ci->input->ip_address(),
-                'activated'=>1,
-                'role'=>$role
 			);
 
-			if ($email_activation) {
-				$data['new_email_key'] = md5(rand().microtime());
-			}
-			if (!is_null($res = $this->ci->users->create_user($data, !$email_activation))) {
+			
+			if (!is_null($res = $this->ci->users->create_user($data))) {
 				$data['user_id'] = $res['user_id'];
 				$data['password'] = $password;
 				unset($data['last_ip']);
@@ -350,11 +290,9 @@ class Tank_auth
 	 */
 	function activate_user($user_id, $activation_key, $activate_by_email = TRUE)
 	{
-        
 		$this->ci->users->purge_na($this->ci->config->item('email_activation_expire', 'tank_auth'));
 
 		if ((strlen($user_id) > 0) AND (strlen($activation_key) > 0)) {
-		      
 			return $this->ci->users->activate_user($user_id, $activation_key, $activate_by_email);
 		}
 		return FALSE;
@@ -435,7 +373,7 @@ class Tank_auth
 						$this->ci->config->item('forgot_password_expire', 'tank_auth'))) {	// success
 
 					// Clear all user's autologins
-					$this->ci->load->model('home/user_autologin');
+					$this->ci->load->model('tank_auth/user_autologin');
 					$this->ci->user_autologin->clear($user->id);
 
 					return array(
@@ -509,7 +447,7 @@ class Tank_auth
 					'username'	=> $user->username,
 					'new_email'	=> $new_email,
 				);
-                
+
 				if ($user->email == $new_email) {
 					$this->error = array('email' => 'auth_current_email');
 
@@ -542,7 +480,6 @@ class Tank_auth
 	function activate_new_email($user_id, $new_email_key)
 	{
 		if ((strlen($user_id) > 0) AND (strlen($new_email_key) > 0)) {
-		 
 			return $this->ci->users->activate_new_email(
 					$user_id,
 					$new_email_key);
@@ -601,7 +538,7 @@ class Tank_auth
 		$this->ci->load->helper('cookie');
 		$key = substr(md5(uniqid(rand().get_cookie($this->ci->config->item('sess_cookie_name')))), 0, 16);
 
-		$this->ci->load->model('home/user_autologin');
+		$this->ci->load->model('tank_auth/user_autologin');
 		$this->ci->user_autologin->purge($user_id);
 
 		if ($this->ci->user_autologin->set($user_id, md5($key))) {
@@ -627,7 +564,7 @@ class Tank_auth
 
 			$data = unserialize($cookie);
 
-			$this->ci->load->model('home/user_autologin');
+			$this->ci->load->model('tank_auth/user_autologin');
 			$this->ci->user_autologin->delete($data['user_id'], md5($data['key']));
 
 			delete_cookie($this->ci->config->item('autologin_cookie_name', 'tank_auth'));
@@ -650,7 +587,7 @@ class Tank_auth
 
 				if (isset($data['key']) AND isset($data['user_id'])) {
 
-					$this->ci->load->model('home/user_autologin');
+					$this->ci->load->model('tank_auth/user_autologin');
 					if (!is_null($user = $this->ci->user_autologin->get($data['user_id'], md5($data['key'])))) {
 
 						// Login user
@@ -688,7 +625,7 @@ class Tank_auth
 	function is_max_login_attempts_exceeded($login)
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
-			$this->ci->load->model('home/login_attempts');
+			$this->ci->load->model('tank_auth/login_attempts');
 			return $this->ci->login_attempts->get_attempts_num($this->ci->input->ip_address(), $login)
 					>= $this->ci->config->item('login_max_attempts', 'tank_auth');
 		}
@@ -706,7 +643,7 @@ class Tank_auth
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
 			if (!$this->is_max_login_attempts_exceeded($login)) {
-				$this->ci->load->model('home/login_attempts');
+				$this->ci->load->model('tank_auth/login_attempts');
 				$this->ci->login_attempts->increase_attempt($this->ci->input->ip_address(), $login);
 			}
 		}
@@ -722,7 +659,7 @@ class Tank_auth
 	private function clear_login_attempts($login)
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
-			$this->ci->load->model('home/login_attempts');
+			$this->ci->load->model('tank_auth/login_attempts');
 			$this->ci->login_attempts->clear_attempts(
 					$this->ci->input->ip_address(),
 					$login,
@@ -730,4 +667,6 @@ class Tank_auth
 		}
 	}
 }
-?>
+
+/* End of file Tank_auth.php */
+/* Location: ./application/libraries/Tank_auth.php */

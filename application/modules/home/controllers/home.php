@@ -5,7 +5,10 @@ class Home extends MY_Controller
     {
         parent::__construct();
         $this->load->model('postmodel');
-         $this->load->library('tank_auth');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->load->library('tank_auth');
+        $this->lang->load('tank_auth');
     }
     public function index()
     {
@@ -14,7 +17,6 @@ class Home extends MY_Controller
     }
     public function google_signup()
     {
-        $this->load->library('session');
         $this->load->helper('url_helper');
         $this->load->library('oauth2/OAuth2');
 		$this->load->config('oauth2', TRUE);
@@ -52,7 +54,8 @@ class Home extends MY_Controller
                     {
                         $this->tank_auth->login_social($user['uid']);
                     }
-                    print_r($this->session->userdata);exit;
+                    redirect('/');
+                   
                 }
             }
 
@@ -65,7 +68,6 @@ class Home extends MY_Controller
     }
     public function facebook()
     {
-        $this->load->library('session');
         $this->load->helper('url_helper');
         $this->load->library('oauth2/OAuth2');
 		$this->load->config('oauth2', TRUE);
@@ -102,9 +104,9 @@ class Home extends MY_Controller
                     {
                         $this->tank_auth->login_social($user['uid_fb']);
                     }
-                    print_r($this->session->userdata);exit;
                 }
                 $user = array();
+                 redirect('/');
             }
             catch (OAuth2_Exception $e)
             {

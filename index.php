@@ -207,14 +207,18 @@ if (defined('ENVIRONMENT'))
      define('DB_PASS','');
      define('ROT_DIR','/9gag/');
      define('BASE_URL','http://localhost/9gag/');
+     define('CLIENT_ID','957752117319-09mk96tmo56k91o7hdr82revld2tfl1h.apps.googleusercontent.com');
+     define('SECRET_KEY','qcPXB09I_kZYFTYO4qqxou-u');
  }
  else
  {
-     define('DB_NAME','foodsafe_dcb');
-     define('DB_USER','foodsafe_dcb');
-     define('DB_PASS','17121990');
+     define('DB_NAME','baoveantam_hai');
+     define('DB_USER','baoveantam_hai');
+     define('DB_PASS','a123456');
      define('ROT_DIR','/');
-     define('BASE_URL','http://www.dcbland.com');
+     define('BASE_URL','http://nhucauvieclam.net/gag');
+     define('CLIENT_ID','957752117319-navphphkvrojmn5hi44s2b5eur14nsop.apps.googleusercontent.com');
+     define('SECRET_KEY','a-zolW-tXBD88mWlc1VByO2K');
     // define('DB_NAME','jcbckiod_9fay');
      //define('DB_USER','jcbckiod_9fay');
      //define('DB_PASS','a123456');
