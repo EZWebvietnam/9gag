@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>9GAG - Forever Alone No More!</title>
-      <link rel="image_src" href="http://d1y9yo7q4hy8a7.cloudfront.net/img/9gag-fb-pic-latest.png" />
+      <title><?php echo $post[0]['title']?></title>
+      <link rel="image_src" href="<?php echo base_url();?>file/uploads/post/<?php echo $post[0]['code']?>/<?php echo $post[0]['img']?>" />
       <link rel="publisher" href="https://plus.google.com/u/0/110969448173982102496" />
-      <link rel="canonical" href="http://9gag.com/" />
-      <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/inmkmihphgjhmeabggdcokmkjhbnmdml"/>
+      <link rel="canonical" href="<?php echo base_url();?>post/<?php echo $post[0]['code']?>" />
       <link rel="shortcut icon" href="//d1y9yo7q4hy8a7.cloudfront.net/static/main/core/20140127_1390790332/img/favicon_v2.png" />
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <meta name="keywords" content="9gag,fun,funny,lol,meme,GIF,wtf,omg,fail,video,cosplay,geeky,forever alone" />
@@ -13,57 +12,81 @@
       <meta name="robots" content="noodp" />
       <meta name="twitter:card" content="photo" />
       <meta name="twitter:site" content="@9gag" />
-      <meta name="twitter:image" content="http://d1y9yo7q4hy8a7.cloudfront.net/img/9gag-fb-pic-latest.png" />
-      <meta property="og:title" content="Just For Fun" />
+      <meta name="twitter:image" content="<?php echo base_url();?>file/uploads/post/<?php echo $post[0]['code']?>/<?php echo $post[0]['img']?>" />
+      <meta property="og:title" content="<?php echo $post[0]['title']?>" />
       <meta property="og:site_name" content="9GAG" />
-      <meta property="og:url" content="<?php echo base_url();?>" />
-      <meta property="og:description" content="9GAG is the easiest way to have fun!" />
-      <meta property="og:type" content="blog" />
-      <meta property="og:image" content="http://d1y9yo7q4hy8a7.cloudfront.net/img/9gag-fb-pic-latest.png" />
+      <meta property="og:url" content="<?php echo base_url();?>post/<?php echo $post[0]['code']?>" />
+      <meta property="og:description" content="Click to see the pic and write a comment..." />
+      <meta property="og:type" content="article" />
+      <meta property="og:image" content="<?php echo base_url();?>file/uploads/post/<?php echo $post[0]['code']?>/<?php echo $post[0]['img']?>" />
       <meta name="viewport" content="width=980, initial-scale=1" />
-   
+      <meta name="verify-v1" content="vvFhqhXLAn+191Kl3iZjjHHY6wzkyGG0CJqGMoFIZEg=" />
       <meta http-equiv="X-UA-Compatible" content="IE=9" />
       <link href="<?php echo base_url();?>template/ezwebvietnam/home/9gag/css/style.css" media="screen,projection" rel="stylesheet" type="text/css" />
       <link href="<?php echo base_url();?>template/ezwebvietnam/home/9gag/css/haivl_style.css" media="screen,projection" rel="stylesheet" type="text/css" />
       <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
       <![endif]-->
-      <script>(function(d, s, id) {
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) return;
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-         fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
+      
    </head>
    <body class="background-white">
       <div class="badge-sticky-subnav-static">
-         <?php include('header.php'); ?>      
-      </div>
-      <div class="section-nav">
-         <div class="width-limit">
-            <div class="slogan">
-               <p>9GAG is your best source of fun.</p>
-            </div>
-            <div class="social-love">
-               <ul>
-                  <li>
-                     <span class="facebook-like badge_facebook_render">
-                        <fb:like href="https://facebook.com/9gag" layout="button_count" show_faces="false" width="240" height="40" action="like" colorscheme="light"></fb:like>
+         <header id="top-nav" class="badge-sticky-nav">
+            <div class="nav-wrap">
+               <h1><a href="http://9gag.com">9GAG</a></h1>
+               <div class="headbar-items">
+                  <ul>
+                     <li><a class="" href="http://9gag.com/hot"><span class="label">Hot</span></a></li>
+                     <li><a class="" href="http://9gag.com/trending"><span class="label">Trending</span></a></li>
+                     <li><a class="" href="http://9gag.com/fresh"><span class="label">Fresh</span></a></li>
+                     <li><a target="_blank" onclick="GAG.GA.track('Navigation-Menu','Clicked-Outer-Link', 'http://9gag.tv?ref=9nav');" href="http://9gag.tv?ref=9nav"><span class="label ">TV</span></a></li>
+                     <li><a target="_blank" onclick="GAG.GA.track('Navigation-Menu','Clicked-Outer-Link', 'http://9gag.com/girl?ref=9nav');" href="http://9gag.com/girl?ref=9nav"><span class="label new">Girl</span></a></li>
+                     <li><a id="jsid-header-funny-menu" href="javascript: void(0);"><span class="label">More <span class="drop-arrow"></span></span></a></li>
+                  </ul>
+               </div>
+               <div id="jsid-header-funny-menu-items" class="popup-menu funny hide badge-popup-menu">
+                  <span class="arrow-wrap">
+                  <span class="arrow"></span>
+                  </span>
+                  <ul>
+                     <li><a class="" href="http://9gag.com/gif">GIF</a></li>
+                     <li><a class="" href="http://9gag.com/nsfw">NSFW</a></li>
+                     <li><a class="" href="http://9gag.com/cute">Cute</a></li>
+                     <li><a class="" href="http://9gag.com/geeky">Geeky</a></li>
+                     <li><a class="" href="http://9gag.com/cosplay">Cosplay</a></li>
+                     <li><a class="" href="http://9gag.com/meme">Meme</a></li>
+                     <li><a class="" href="http://9gag.com/timely">Timely</a></li>
+                     <li><a class="" href="http://9gag.com/girl">Girl</a></li>
+                     <li><a class="" href="http://9gag.com/food">Food</a></li>
+                  </ul>
+               </div>
+               <div class="visitor-function">
+                  <a class="badge-login-button link" href="https://9gag.com/login">Log in</a>
+                  <a class="badge-signup-button link" href="https://9gag.com/signup">Sign up</a>        
+                  <div class="upload">
+                     <a class="badge-signup-button upload" href="https://9gag.com/signup">Upload</a>
+                  </div>
+               </div>
+               <div class="download-function">
+                  <a id="jsid-header-download-menu" class="mobile" href="javascript:void(0);">Mobile</a>
+                  <div id="jsid-header-download-menu-items" class="popup-menu download hide">
+                     <span class="arrow-wrap">
+                     <span class="arrow"></span>
                      </span>
-                  </li>
-                  <li><span class="twitter-follow"><a href="https://twitter.com/9gag" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @9gag</a></span></li>
-                  <li>
-                     <span class="google-plus-follow">
-                        <div class="g-follow" data-annotation="none" data-height="20" data-href="https://plus.google.com/110969448173982102496/" data-rel="publisher"></div>
-                     </span>
-                  </li>
-               </ul>
+                     <ul>
+                        <li><a href="http://9gag.com/iphone" target="_blank" onclick="GAG.GA.track('iPhone-App', 'Clicked-Download', 'Nav');">Download for iOS</a></li>
+                        <li><a href="http://9gag.com/android" target="_blank" onclick="GAG.GA.track('Android-App', 'Clicked-Download', 'Nav');">Download for Android</a></li>
+                        <li><a href="http://9gag.com/blackberry" target="_blank" onclick="GAG.GA.track('Blackberry-App', 'Clicked-Download', 'Nav');">Download for Blackberry</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <form id="headbar-search" class="badge-header-search" action="http://9gag.com/search">
+                  <input type="text" name="query" id="jsid-search-input" class="ui-autocomplete-input search search_input" data-placeholder="Search&#8230;" tabindex="1" />
+                  <div class="ui-widget"></div>
+               </form>
+               <div class="clearfix"></div>
             </div>
-            <a class="customize badge-personalise-btn " href="#">Personalise <span class="drop-arrow"></span></a>
-            <div class="clearfix"></div>
-         </div>
+         </header>
       </div>
       <div class="toast toast-color- badge-toast-container" style="display:none">
          <p class="close">
@@ -73,117 +96,10 @@
       </div>
       <div id="container" class="">
          <div class="badge-page page">
-            <div class="main-wrap">
-               <div id="gag-ads-init-mode" data-mode=""></div>
-               <section id="list-view-2" class="badge-list-view-element variant-right">
-                  <span id="jsid-gat-interval" data-post-interval="-1" class="hide">1393256824</span>
-                  <span id="jsid-last-update-ts" class="hide">1393256824</span>
-                  <div class="badge-entry-collection">
-                  <?php 
-                  foreach($list_post as $post)
-                  {
-                  ?>
-                     <article
-                        data-entry-id="<?php echo $post['code']?>"
-                        data-entry-thumbnail-url="<?php echo base_url();?>file/uploads/post/<?php echo $post['code']?>/<?php echo $post['img']?>"
-                        data-entry-url="<?php echo base_url();?>post/<?php echo $post['code']?>"
-                        data-entry-votes="8803"
-                        data-entry-comments="43"
-                        id="jsid-entry-entity-<?php echo $post['code']?>"
-                        class="badge-entry-container badge-entry-entity">
-                        <header>
-                           <h2 class="badge-item-title">
-                              <a class="badge-evt badge-track"
-                                 data-evt="ref-post-from-list,hot,position-1"
-                                 data-track="post,v,,,d,<?php echo $post['code']?>,l"
-                                 href="<?php echo base_url();?>post/<?php echo $post['code']?>"
-                                 target="_blank">
-                              <?php echo $post['title'];?>            </a>
-                           </h2>
-                           <p class="post-meta">
-                              <a class="badge-evt point" id="love-count-<?php echo $post['code']?>" 
-                                 href="<?php echo base_url();?>post/<?php echo $post['code']?>" 
-                                 target="_blank" 
-                                 data-evt="EntryAction,VotePointLinkUnderTitle,ListPage">
-                              <span class="badge-item-love-count">8,803</span> points</a> &middot;
-                              <a class="comment badge-evt" href="<?php echo base_url();?>post/<?php echo $post['code']?>#comment" target="_blank"
-                                 data-evt="EntryAction,CommentLinkUnderTitle,ListPage" ><fb:comments-count href="<?php echo base_url();?>post/<?php echo $post['code']?>"/>
-                           </fb:comments-count> comments</a>
-                           </p>
-                           <div class="badge-entry-sticky-shadow sticky-action">
-                              <div class="badge-entry-sticky">
-                                 <ul class="badge-item-vote-container vertical-vote  ">
-                                 <?php 
-                                 //print_r($this->session->userdata('username')); exit;
-                        
-                                 if(!$this->tank_auth->is_logged_in())
-                                 {
-                                   
-                                 ?>
-                                    <li><a class="badge-item-vote-up up" href="javascript:void(0);">Upvote</a></li>
-                                    <li><a class="badge-item-vote-down down" href="javascript:void(0);">Downvote</a></li>
-                                    <?php } else {?>
-                                    <li><a class="vote-up up" >Upvote</a></li>
-                                    <li><a class="vote-down down">Downvote</a></li>
-                                    <?php } ?>
-                                 </ul>
-                                 <ul class="others">
-                                    <li><a class="comment badge-evt badge-item-comment" target="_blank" href="<?php echo base_url();?>post/<?php echo $post['code']?>#comment"
-                                       data-evt="EntryAction,CommentButtonClicked,ListPage">Comment</a></li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </header>
-                        <div class="badge-post-container post-container">
-                           <div class="">
-                            
-                             <?php echo $post['content']?>
-                              
-                           </div>
-                        </div>
-                        <div class="post-afterbar-a in-list-view">
-                           <div class="share">
-                              <ul>
-                              
-                                 <li><a class="badge-facebook-share badge-evt badge-track btn-share facebook" href="javascript:void(0);" data-track="social,fb.s,,,d,aqmWw1P,p" data-evt="Facebook-Share,PostClicked,<?php echo base_url();?>post/<?php echo $post['code']?>" data-share="<?php echo base_url();?>post/<?php echo $post['code']?>">Facebook</a></li>
-                     <li><a class="badge-twitter-share badge-evt badge-track btn-share twitter" href="javascript:void(0);" data-track="social,t.s,,,d,aqmWw1P,p" data-evt="Twitter-Share,PostClicked,<?php echo base_url();?>post/<?php echo $post['code']?>" data-title="<?php echo $post['title']?>" data-share="<?php echo base_url();?>post/<?php echo $post['code']?>">Twitter</a></li>
-                              </ul>
-                           </div>
-                           <div class="others">
-                              <a class="badge-more-share-button more" href="javascript:void(0);">More</a>
-                           </div>
-                           <div class="badge-more-share-menu popup-menu more-share hide">
-                              <ul>
-                                 <li><a href="javascript:void(0);" class="badge-gplus-share badge-evt badge-track"
-                                    data-track="social,gp.s,,,d,<?php echo $post['code']?>,l"
-                                    data-evt="GPlus-Share,ListClicked,<?php echo base_url();?>post/<?php echo $post['code']?>"
-                                    data-share="<?php echo base_url();?>post/<?php echo $post['code']?>">Google+</a></li>
-                                 <li><a href="javascript:void(0);" class="badge-pinterest-share badge-evt badge-track"
-                                    data-track="social,pn.s,,,d,<?php echo $post['code']?>,l"
-                                    data-evt="Pinterest-Share,ListClicked,<?php echo base_url();?>post/<?php echo $post['code']?>"
-                                    data-title="<?php echo $post['title']?>"
-                                    data-img="http://d24w6bsrhbeh9d.cloudfront.net/photo/av0RXNX_700b.jpg"
-                                    data-share="<?php echo base_url();?>post/<?php echo $post['code']?>">Pinterest</a></li>
-                                 <li><a href="mailto:?subject=Check%20out%20%22EA%20created%20Pel%C3%A9%27s%20Fifa%20Ultimate%20Team%20thumbnail%20from%20a%20picture%20of%20him%20in%20the%20bath.%22&body=This%20is%20funny%2C%20you%20must%20check%20it%20out%21%20%3AD%0AEA%20created%20Pel%C3%A9%27s%20Fifa%20Ultimate%20Team%20thumbnail%20from%20a%20picture%20of%20him%20in%20the%20bath.%0Ahttp%3A%2F%2F9gag.com%2Fgag%2Fav0RXNX%3Fref%3D9g.m" class="badge-email-share badge-evt badge-track"
-                                    data-track="social,9g.m,,,d,<?php echo $post['code']?>,l"
-                                    data-evt="Email-Share,ListClicked,http://9gag.com/gag/av0RXNX"
-                                    target="_blank">Email</a></li>
-                              </ul>
-                           </div>
-                           <div class="clearfix"></div>
-                        </div>
-                     </article>
-                     <?php } ?>
-                     
-                  </div>
-                  <div class="loading">
-                     <a class="btn badge-load-more-post" href="/?id=aWZbP2A%2CaozLoL2%2CaxNRG0b&c=10" data-loading-text="Loading more posts...">Load more posts</a>
-                  </div>
-               </section>
-            </div>
+            <?php echo $this->load->view($main_content);?>
             
             <section id="sidebar">
-               <div id="rightColumn">
+            <div id="rightColumn">
                   <div class="box infoBox highlightBox">
                      <b>Vào Facebook để duyệt haivl sướng hơn! Bạn không vào được? Xem hướng dẫn <a href="/cach-vao-facebook-bi-chan-mang-vnpt-viettel-fpt">cách vào Facebook</a>.</b>
                   </div>
@@ -469,57 +385,85 @@
 
 </div>
                </div>
-               <div id="sidebar-content">
-                  <section class="badge-block-ad block-ad">
-                     <div class="img-container">
-                        <!-- 9gag-list-sidebar1-300x250-atf --> 
-                        <div class='s-300' id='div-gpt-ad-1365137578270-1' style='width:300px; height:250px;'>  </div>
+               <form method="post" action="/profile/setcustomize" id="jsid-personalise-form">
+                  <section class="section-control" id="jsid-personalise-selector" style="display:none;">
+                     <div class="title">
+                        <h3>Personalise 9GAG <em>Beta</em></h3>
                      </div>
-                  </section>
-                  <section class="block-feature-cover">
-                     <h2 class="sidebar-title">Featured</h2>
-                     <ul id="jsid-featured-item-container"
-                     data-ads-position="8, 16"
-                     data-list-key="hot"
+                     <ul>
+                        <li class="selected">
+                           <p>
+                              <span class="cell-title">Auto Expand Posts</span>
+                           </p>
+                           <span class="toggle on badge-personalise-options">
+                           <span class="on">On</span>
+                           <span class="off">Off</span>
+                           <span class="switch"></span>
+                           <input type="hidden" name="auto_expand" value="1"/>
+                           </span>
+                        </li>
+                        <li class="">
+                           <p>
+                              <span class="cell-title">Auto Play GIFs</span>
+                           </p>
+                           <span class="toggle  badge-personalise-options">
+                           <span class="on">On</span>
+                           <span class="off">Off</span>
+                           <span class="switch"></span>
+                           <input type="hidden" name="auto_animated" value="0"/>
+                           </span>
+                        </li>
+                        <li class="">
+                           <p>
+                              <span class="cell-title">Show NSFW Posts</span>
+                           </p>
+                           <span class="toggle  badge-personalise-options badge-personalise-option-nsfw">
+                           <span class="on">On</span>
+                           <span class="off">Off</span>
+                           <span class="switch"></span>
+                           <input type="hidden" name="show_nsfw" value="0"/>
+                           </span>
+                        </li>
                      </ul>
-                     <div class="loading hide">
-                        <a class="btn spin" href="#">Loading</a>
+                     <div class="btn-container">
+                        <a class="btn size-30 blue" href="#" id="jsid-personalise-btn-save">Save</a>
+                        <a class="link" href="#" id="jsid-personalise-btn-reset">Reset</a>
                      </div>
                   </section>
-                  <div id="jsid-featured-sidebar-tail">
-                     <section id="jsid-featured-sidebar-ad" class="badge-block-ad block-ad">
-                        <div class="img-container">
-                           <!-- 9gag-list-sidebar2-300x250-sticky --> 
-                           <div class='s-300' id='div-gpt-ad-1365137578270-2' style='width:300px; height:250px;'>  </div>
+                  <input type="hidden" name="customize_reset" value=""/>
+                  <input type="hidden" name="url" value="/gag/amXMQXv"/>
+               </form>
+               <div id="sidebar-content">
+                  <div class="badge-sticky-sidedock-static">
+                     <!-- this is used for measurement -->
+                     <div class="">
+                        <!-- this is the actual sticky element -->
+                        <div class="block-ad">
+                           <div class="badge-gag-ads-container img-container" data-gag-ads="post-sidebar1-300x250-atf"></div>
                         </div>
-                     </section>
-                     <section class="badge-get-the-app get-the-app">
-                        <h2 class="sidebar-title">Get the App</h2>
-                        <ul>
-                           <li><a class="app-store" href="http://9gag.com/iphone" target="_blank" onclick="GAG.GA.track('iPhone-App', 'Clicked-Download', 'SidNavBanner');">Download on App Store</a></li>
-                           <li><a class="google-play" href="http://9gag.com/android" target="_blank" onclick="GAG.GA.track('Android-App', 'Clicked-Download', 'SidNavBanner');">Get it on Google Play</a></li>
-                        </ul>
-                     </section>
+                        <section class="block-feature-cover">
+                           <h2 class="sidebar-title">Featured</h2>
+                           <ul id="jsid-featured-item-container" data-ads-position="5" data-list-key="post" ></ul>
+                           <div class="loading hide">
+                              <a class="btn spin" href="#">Loading</a>
+                           </div>
+                        </section>
+                        <div id="jsid-featured-sidebar-tail">
+                           <section id="jsid-featured-sidebar-ad" class="badge-block-ad block-ad">
+                              <div class="badge-gag-ads-container img-container" data-gag-ads="post-sidebar2-300x250-btf"></div>
+                           </section>
+                           <section class="badge-get-the-app get-the-app">
+                              <h2 class="sidebar-title">Get the App</h2>
+                              <ul>
+                                 <li><a class="app-store" href="http://9gag.com/iphone" target="_blank" onclick="GAG.GA.track('iPhone-App', 'Clicked-Download', 'SidNavBanner');">Download on App Store</a></li>
+                                 <li><a class="google-play" href="http://9gag.com/android" target="_blank" onclick="GAG.GA.track('Android-App', 'Clicked-Download', 'SidNavBanner');">Get it on Google Play</a></li>
+                              </ul>
+                           </section>
+                           <div class="clearfix"></div>
+                        </div>
+                     </div>
                   </div>
                </div>
-               <section class="footer">
-                  <div class="buttons-area" style="display: none;">
-                     <a class="badge-scroll-to-top back-to-top" href="javascript: void(0);">Back to top</a>
-                     <div class="keyboard-hint">
-                        <ul>
-                           <li><a class="badge-next-entry" href="javascript: void(0);"><strong>J</strong> <span class="next">Next</span></a></li>
-                           <li><a class="badge-prev-entry" href="javascript: void(0);"><strong>k</strong> <span class="prev">Prev</span></a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  <a class="give-feedback" href="mailto:support%2Bweb@9gag.com?subject=Shut%20up%20and%20take%20my%20feedback" target="_blank">Give Feedback</a>
-                  <p class="static">
-                     <a href="http://9gag.com/about">About</a> &middot; 
-                     <a href="http://9gag.com/faq">FAQ</a> &middot; 
-                     <a href="http://9gag.com/privacy">Privacy</a> &middot; 
-                     <a href="http://9gag.com/contact">Contact</a>
-                  </p>
-               </section>
             </section>
             <div id="overlay-container" class="overlay-scroll-container hide">
                <section class="modal signup badge-overlay-signin hide">
@@ -528,8 +472,8 @@
                      <h2>Login</h2>
                      <p class="lead">Connect with a social network</p>
                      <div class="social-signup">
-                        <a class="btn-connect-option facebook badge-facebook-connect" href="<?php echo base_url();?>facebook-signup">Facebook</a>
-                        <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="<?php echo base_url();?>google-signup">Google</a></span> 
+                        <a class="btn-connect-option facebook badge-facebook-connect" href="#" onclick="GAG.GA.track('login-signup', 'facebook-connect', 'login-form');">Facebook</a>
+                        <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="javascript:void(0);" onclick="GAG.GPlus.btnClicked = true;">Google</a></span> 
                      </div>
                      <form id="login-email" class="badge-login-form" action="https://9gag.com/login" method="POST">
                         <input type="hidden" id="jsid-login-form-csrftoken" name="csrftoken" value=""/>
@@ -558,8 +502,8 @@
                         <h2>Hey there!</h2>
                         <p class="lead">9GAG is your best source of fun. Share anything you find interesting, get real responses from people all over the world, and discover what makes you laugh.</p>
                         <div class="social-signup">
-                           <a class="btn-connect-option facebook badge-facebook-connect" href="<?php echo base_url();?>facebook-signup">Facebook</a>
-                           <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="<?php echo base_url();?>google-signup">Google</a></span>
+                           <a class="btn-connect-option facebook badge-facebook-connect" href="#" onclick="GAG.GA.track('login-signup', 'facebook-connect', 'signup-form');">Facebook</a>
+                           <span class="badge-gplus-connect"><a class="btn-connect-option google-plus" href="javascript:void(0);" onclick="GAG.GPlus.btnClicked = true; GAG.GA.track('login-signup', 'gplus-connect', 'signup-form');">Google</a></span>
                         </div>
                         <p class="alternative">Sign up with your <a href="#" class="badge-signup-email-link">Email Address</a></p>
                         <p class="alternative">Have an account? <a href="https://9gag.com/login?ref=" class="badge-signup-login-link">Login</a></p>
@@ -626,12 +570,37 @@
             <!--end overlay-container-->                
             <div class="clearfix"></div>
          </div>
+         <footer>
+            <div class="width-limit">
+               <div class="naughty-box">
+                  <div class="width-limit">
+                     <div class="badge-gag-ads-container image-container" data-gag-ads="post-footer-728x90">
+                     </div>
+                  </div>
+               </div>
+               <div class="primary">
+                  <ul>
+                     <li><a href="http://9gag.com/about">About</a></li>
+                     <li><a href="http://9gag.com/privacy">Privacy</a></li>
+                     <li><a href="http://9gag.com/tos">Terms</a></li>
+                     <li><a href="http://9gag.com/advertise">Advertise</a></li>
+                     <li><a href="http://9gag.com/faq">FAQ</a></li>
+                     <li><a href="mailto:support%2Bweb@9gag.com?subject=Shut%20up%20and%20take%20my%20feedback" target="_blank">Give Feedback</a></li>
+                     <li>9GAG © 2014</li>
+                  </ul>
+               </div>
+            </div>
+            <a class="give-feedback" href="mailto:support%2Bweb@9gag.com?subject=Shut%20up%20and%20take%20my%20feedback" target="_blank">Give Feedback</a>
+         </footer>
       </div>
       <!--end #container-->
-      <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>        
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+      
       <script type="text/javascript" src="<?php echo base_url();?>template/ezwebvietnam/home/9gag/js/lib.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>template/ezwebvietnam/home/9gag/js/gag.js"></script>
+             
       <div id="fb-root" style="display:none;"></div>
-      <!-- :0DWBRXTUFEdNRVWywEVNFDTUdWY -->
+      
+      <!-- 9gVQ01EVBRXTUllMMRVS61UewknTEVUY -->
    </body>
 </html>

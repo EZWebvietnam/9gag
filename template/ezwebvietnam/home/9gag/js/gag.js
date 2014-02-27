@@ -741,7 +741,7 @@ jQuery.noConflict();
             h.a = true;
             var e = JSON.stringify(h);
             var g = b.cookie(GAG.Facebook.autoConnectKey, e, GAG.Facebook.autoConnectDuration);
-            GAG.Facebook.Connect.autoLogin(location.href)
+            
         },
         openSendDialog: function (g, f, h, i, e) {
             FB.ui({
@@ -1741,7 +1741,7 @@ jQuery.noConflict();
                 i.preventDefault();
                 var g = b(this);
                 var h = g.attr("data-share");
-                var f = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(h);
+                var f = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href);
                 e._openWindow(f)
             },
             _openTwitterShareDialog: function (j) {
@@ -1749,7 +1749,7 @@ jQuery.noConflict();
                 var h = b(this);
                 var i = h.attr("data-share");
                 var g = h.attr("data-title");
-                var f = "https://twitter.com/intent/tweet?via=9GAG&source=tweetbutton&original_referer=" + encodeURIComponent(i) + "&text=" + g + "&url=" + encodeURIComponent(i);
+                var f = "https://twitter.com/intent/tweet?via=9GAG&source=tweetbutton&original_referer=" + encodeURIComponent(window.location.href) + "&text=" + g + "&url=" + encodeURIComponent(window.location.href);
                 e._openWindow(f)
             },
             _openGPlusShareDialog: function (j) {
@@ -1757,7 +1757,7 @@ jQuery.noConflict();
                 var h = b(this);
                 var i = h.attr("data-share");
                 var g = h.attr("data-title");
-                var f = "https://plus.google.com/share?url=" + encodeURIComponent(i);
+                var f = "https://plus.google.com/share?url=" + encodeURIComponent(window.location.href);
                 e._openWindow(f)
             },
             _openPinterestShareDialog: function (l) {
@@ -1766,8 +1766,8 @@ jQuery.noConflict();
                 var j = i.attr("data-share");
                 var h = i.attr("data-img");
                 var g = i.attr("data-title");
-                var f = "//pinterest.com/pin/create/button/?url=" + encodeURIComponent(j) + "&media=" + encodeURIComponent(h) + "&description=" + g;
-                e._openWindow(f)
+                var f = "//pinterest.com/pin/create/button/?url=" + encodeURIComponent(window.location.href) + "&media=" + encodeURIComponent(h) + "&description=" + g;
+                e._openWindow(f)window.location.href
             },
             _openWindow: function (j) {
                 var g = 640;

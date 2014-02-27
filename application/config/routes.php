@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "home/index";
 $route['trang-chu'] = "home/index";
+$route['post/(:any)'] = "home/post/detail/$1";
 $route['google-signup'] = "home/google_signup";
 $route['facebook-signup'] = "home/facebook";
 $route['404_override'] = '';
