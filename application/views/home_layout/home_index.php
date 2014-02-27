@@ -34,57 +34,89 @@
       <div class="badge-sticky-subnav-static">
          <header id="top-nav" class="badge-sticky-nav">
             <div class="nav-wrap">
-               <h1><a href="http://9gag.com">9GAG</a></h1>
-               <div class="headbar-items">
-                  <ul>
-                     <li><a class="selected" href="http://9gag.com/hot"><span class="label">Hot</span></a></li>
-                     <li><a class="" href="http://9gag.com/trending"><span class="label">Trending</span></a></li>
-                     <li><a class="" href="http://9gag.com/fresh"><span class="label">Fresh</span></a></li>
-                     <li><a target="_blank" onclick="GAG.GA.track('Navigation-Menu','Clicked-Outer-Link', 'http://9gag.com/girl?ref=9nav');" href="http://9gag.com/girl?ref=9nav"><span class="label new">Girl</span></a></li>
-                     <li><a target="_blank" onclick="GAG.GA.track('Navigation-Menu','Clicked-Outer-Link', 'http://9gag.com/food?ref=9nav');" href="http://9gag.com/food?ref=9nav"><span class="label new">Food</span></a></li>
-                     <li><a id="jsid-header-funny-menu" href="javascript: void(0);"><span class="label">More <span class="drop-arrow"></span></span></a></li>
-                  </ul>
-               </div>
-               <div id="jsid-header-funny-menu-items" class="popup-menu funny hide badge-popup-menu">
-                  <span class="arrow-wrap">
-                  <span class="arrow"></span>
-                  </span>
-                  <ul>
-                     <li><a class="" href="http://9gag.com/gif">GIF</a></li>
-                     <li><a class="" href="http://9gag.com/nsfw">NSFW</a></li>
-                     <li><a class="" href="http://9gag.com/cute">Cute</a></li>
-                     <li><a class="" href="http://9gag.com/geeky">Geeky</a></li>
-                     <li><a class="" href="http://9gag.com/cosplay">Cosplay</a></li>
-                     <li><a class="" href="http://9gag.com/meme">Meme</a></li>
-                     <li><a class="" href="http://9gag.com/timely">Timely</a></li>
-                     <li><a class="" href="http://9gag.com/girl">Girl</a></li>
-                     <li><a class="" href="http://9gag.com/food">Food</a></li>
-                  </ul>
-               </div>
-               <div class="visitor-function">
-                  <a class="badge-login-button link" href="https://9gag.com/login">Log in</a>
-                  <a class="badge-signup-button link" href="https://9gag.com/signup">Sign up</a>        
-                  
-               </div>
-               <div class="download-function">
-                  <a id="jsid-header-download-menu" class="mobile" href="javascript:void(0);">Mobile</a>
-                  <div id="jsid-header-download-menu-items" class="popup-menu download hide">
-                     <span class="arrow-wrap">
-                     <span class="arrow"></span>
-                     </span>
-                     <ul>
-                        <li><a href="http://9gag.com/iphone" target="_blank" onclick="GAG.GA.track('iPhone-App', 'Clicked-Download', 'Nav');">Download for iOS</a></li>
-                        <li><a href="http://9gag.com/android" target="_blank" onclick="GAG.GA.track('Android-App', 'Clicked-Download', 'Nav');">Download for Android</a></li>
-                        <li><a href="http://9gag.com/blackberry" target="_blank" onclick="GAG.GA.track('Blackberry-App', 'Clicked-Download', 'Nav');">Download for Blackberry</a></li>
-                     </ul>
-                  </div>
-               </div>
-               <form id="headbar-search" class="badge-header-search" action="http://9gag.com/search">
-                  <input type="text" name="query" id="jsid-search-input" class="ui-autocomplete-input search search_input" data-placeholder="Search&#8230;" tabindex="1" />
-                  <div class="ui-widget"></div>
-               </form>
-               <div class="clearfix"></div>
-            </div>
+    <h1><a href="http://9gag.com">9GAG</a></h1>
+
+    
+<div class="headbar-items">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#parent").hover(function(){
+         $(this).parent().find('#sub').stop(true,true).show();
+           $(this).find('#sub_li').stop(true,true).show(50);
+    }, function(){
+    $(this).parent().find('#sub').stop(true,true).hide(50);
+           $(this).find('#sub_li').stop(true,true).hide(50);
+    });
+    $("#parent2").hover(function(){
+         $(this).parent().find('#sub_2').stop(true,true).show();
+           $(this).find('#sub_li_2').stop(true,true).show(50);
+    }, function(){
+    $(this).parent().find('#sub_2').stop(true,true).hide(50);
+           $(this).find('#sub_li_2').stop(true,true).hide(50);
+    });
+});
+</script>
+    <ul id="menuBar">
+           <li class="selected"><a href="/">Trang chủ</a></li>
+            <li  id="parent2" style="cursor:pointer;">
+                <span><a href="/hot">Kênh</a></span>
+                <ul id="sub_2">
+                    <li id="sub_li_2"><a href="/builder/rage">Chế rage comic</a></li>    
+                    <li id="sub_li_2"><a href="/builder/memes">Chế meme</a></li>
+                     <li id="sub_li_2"><a href="/builder/memes">Chế memeChế memeChế meme</a></li>        
+                </ul>
+            </li>
+            <li><a href="/unread">Bài mới</a></li>
+            <li><a href="/vote">Bình chọn</a></li>
+			<li><a target="_blank" href="http://haivl.tv/">Bài hot</a></li>
+		      <li><a target="_blank" href="http://haivl.tv/">Viết bài</a></li>
+            
+            <li id="parent" style="cursor:pointer;">
+                <span><a href="/hot">Chế ảnh</a></span>
+                <ul id="sub">
+                    <li id="sub_li"><a href="/builder/rage">Chế rage comic</a></li>    
+                    <li id="sub_li"><a href="/builder/memes">Chế meme</a></li>
+                     <li id="sub_li"><a href="/builder/memes">Chế memeChế memeChế meme</a></li>        
+                </ul>
+            </li>
+        </ul>
+</div>
+<?php 
+if(!$this->tank_auth->is_logged_in())
+{
+?>
+<div class="visitor-function">
+        <a class="badge-login-button link" href="https://9gag.com/login">Log in</a>
+        <a class="badge-signup-button link" href="https://9gag.com/signup">Sign up</a>        
+        
+    </div>  
+ <?php } else {?>
+ <div class="user-function">
+                
+
+        
+        <div id="jsid-header-user-menu" class="avatar">
+            <a class="avatar-container" href="javascript:void(0);">
+                <img src="<?php echo $this->session->userdata('img');?>" alt="Avatar">
+                <span class="name">Me</span>
+            </a>
+        </div>
+
+                
+    </div>
+ <?php  } ?>   
+       
+   
+    
+
+    <form id="headbar-search" class="badge-header-search" action="http://9gag.com/search">
+    <input type="text" name="query" id="jsid-search-input" class="ui-autocomplete-input search search_input" data-placeholder="Search…" tabindex="1" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+
+    <div class="ui-widget"></div>
+<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul></form>
+    <div class="clearfix"></div>
+</div>
          </header>
       </div>
       <div class="section-nav">
@@ -234,6 +266,7 @@
                   </div>
                </section>
             </div>
+            
             <section id="sidebar">
                <div id="rightColumn">
                   <div class="box infoBox highlightBox">
@@ -328,6 +361,198 @@
                         <div class="moreTop"><a href="/top-user/week">xem thêm »</a></div>
                      </div>
                   </div>
+                  <div class="box darkBox newestBox">
+    <h3>
+        Bài mới</h3>
+    <div>
+        <div class="photoListItemSmall">
+            <a href="/photo/2386406?ref=n1">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140225/8e37e0ed0814494084a105fcf31d0dc5/thumbnail-414d4c8804a547f9ac4a1fc780b3e239.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Xếp đi. @@
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">1.045</span>
+                        <span class="comments" title="lượt bình luận">12</span>
+                        <span class="likes" title="lượt thích">32</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+        <div class="photoListItemSmall">
+            <a href="/photo/2397963?ref=n2">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140227/bc3c747042ac43a1a20d71e8f9f56a27/thumbnail-5692dc56b87548f7be604169f0ab8d8b.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Đã tìm ra lý do phụ nữ thích hút thuốc lá <img class="emo" src="http://s.haivl.com/content/images/emo/static/laugh.png">
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">545</span>
+                        <span class="comments" title="lượt bình luận">1</span>
+                        <span class="likes" title="lượt thích">7</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+        <div class="photoListItemSmall last">
+            <a href="/photo/2394991?ref=n3">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140226/d2107f85ac6c4dec9b18e8988ed959c2/thumbnail-f4209978e541495794bb235a8d49f4f2.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Bạn nào biết thì liên hệ giúp nha.Share luôn cho khổ chủ
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">1.612</span>
+                        <span class="comments" title="lượt bình luận">6</span>
+                        <span class="likes" title="lượt thích">13</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+</div>
+
+</div>
+<div class="box darkBox newestBox">
+    <h3>
+        Bài Chờ Duyệt</h3>
+    <div>
+        <div class="photoListItemSmall">
+            <a href="/photo/2386406?ref=n1">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140225/8e37e0ed0814494084a105fcf31d0dc5/thumbnail-414d4c8804a547f9ac4a1fc780b3e239.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Xếp đi. @@
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">1.045</span>
+                        <span class="comments" title="lượt bình luận">12</span>
+                        <span class="likes" title="lượt thích">32</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+        <div class="photoListItemSmall">
+            <a href="/photo/2397963?ref=n2">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140227/bc3c747042ac43a1a20d71e8f9f56a27/thumbnail-5692dc56b87548f7be604169f0ab8d8b.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Đã tìm ra lý do phụ nữ thích hút thuốc lá <img class="emo" src="http://s.haivl.com/content/images/emo/static/laugh.png">
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">545</span>
+                        <span class="comments" title="lượt bình luận">1</span>
+                        <span class="likes" title="lượt thích">7</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+        <div class="photoListItemSmall last">
+            <a href="/photo/2394991?ref=n3">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140226/d2107f85ac6c4dec9b18e8988ed959c2/thumbnail-f4209978e541495794bb235a8d49f4f2.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Bạn nào biết thì liên hệ giúp nha.Share luôn cho khổ chủ
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">1.612</span>
+                        <span class="comments" title="lượt bình luận">6</span>
+                        <span class="likes" title="lượt thích">13</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+</div>
+
+</div>
+<div class="box darkBox newestBox">
+    <h3>
+        Bài Hot</h3>
+    <div>
+        <div class="photoListItemSmall">
+            <a href="/photo/2386406?ref=n1">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140225/8e37e0ed0814494084a105fcf31d0dc5/thumbnail-414d4c8804a547f9ac4a1fc780b3e239.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Xếp đi. @@
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">1.045</span>
+                        <span class="comments" title="lượt bình luận">12</span>
+                        <span class="likes" title="lượt thích">32</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+        <div class="photoListItemSmall">
+            <a href="/photo/2397963?ref=n2">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140227/bc3c747042ac43a1a20d71e8f9f56a27/thumbnail-5692dc56b87548f7be604169f0ab8d8b.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Đã tìm ra lý do phụ nữ thích hút thuốc lá <img class="emo" src="http://s.haivl.com/content/images/emo/static/laugh.png">
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">545</span>
+                        <span class="comments" title="lượt bình luận">1</span>
+                        <span class="likes" title="lượt thích">7</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+        <div class="photoListItemSmall last">
+            <a href="/photo/2394991?ref=n3">
+                <div class="thumbnail">
+                    <img src="http://s2.haivl.com/data/photos2/20140226/d2107f85ac6c4dec9b18e8988ed959c2/thumbnail-f4209978e541495794bb235a8d49f4f2.jpg">
+                </div>
+                <div class="info">
+                    <h3>
+                        Bạn nào biết thì liên hệ giúp nha.Share luôn cho khổ chủ
+                    </h3>
+                    <div class="stats">
+                        <span class="views" title="lượt xem">1.612</span>
+                        <span class="comments" title="lượt bình luận">6</span>
+                        <span class="likes" title="lượt thích">13</span>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </a>
+        </div>
+</div>
+
+</div>
                </div>
                <div id="sidebar-content">
                   <section class="badge-block-ad block-ad">

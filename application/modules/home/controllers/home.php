@@ -119,5 +119,10 @@ class Home extends MY_Controller
 	{
         
 	} 
+    public function logout()
+    {
+        $this->tank_auth->logout();
+        redirect('/gag');
+    }
 }
 ?>

@@ -1815,9 +1815,13 @@ jQuery.noConflict();
                 var f = j.find(".headbar-items");
                 var h = f.find("#jsid-header-funny-menu").parent();
                 var g = b("#jsid-header-funny-menu-items");
+                var abc = f.find("#jsid-header-girl-menu").parent();
+                var abcd = b("#jsid-header-girl-menu-items");
                 var i = l.width() + f.width() - h.width();
                 g.css("margin-left", i + "px");
                 g.css("left", "0")
+                abcd.css("margin-left", i + "px");
+                abcd.css("left", "0")
             }
         }
     })());

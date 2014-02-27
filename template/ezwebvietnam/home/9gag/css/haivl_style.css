@@ -76,3 +76,125 @@ div.topUsers .item img {
 				.clear {
 clear: both;
 }
+ul#menuBar {
+font-weight: bold;
+font-size: 14px;
+float: left;
+margin: 15px 0 0;
+}
+#menuBar li {
+display: inline-block;
+}
+#menuBar li.selected a, #menuBar li.selected span {
+color: #ee0005;
+font-weight: bold;
+border-color: #ee0005;
+}
+.headbar-items li ul {
+background-color: #fff;
+display: none;
+box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+border: 1px solid #ccc;
+position: absolute;
+padding: 5px 0;
+z-index: 1000;
+top: 35px;
+width: 143px;
+}
+.headbar-items li ul a{
+    display: block;
+color: #777;
+background-color: #fff;
+line-height: 30px;
+padding: 0 20px;
+font-size: 13px;
+    }
+.headbar-items li ul a:hover
+{    
+    background-color:#f4f4f4;
+    color:#000;
+    display: block;
+    line-height: 30px;
+    padding: 0 20px;
+    font-size: 13px;
+    width: 100px;
+}
+#menuBar li ul li {
+display: block;
+
+}
+#menuBar li ul a, #menuBar li.selected ul a {
+color: #999;
+display: block;
+padding: 0px 8px;
+font-size: 13px;
+width: 128px;
+}
+#headerRight {
+float: right;
+margin-top: 6px;
+}
+#headerRight .notiButton {
+background: url(http://s.haivl.com/content/images/message_icon.png?v=1) no-repeat;
+text-align: right;
+width: 35px;
+margin-left: 5px;
+}
+#headerRight .noNoti {
+margin-left: 7px;
+}
+#headerRight .avatarLink {
+display: inline-block;
+}
+#headerRight .avatar .blank {
+width: 130px;
+position: absolute;
+height: 15px;
+right: 0;
+top: 20px;
+display: none;
+}
+#headerRight ul {
+background-color: black;
+border-radius: 0 0 5px 5px;
+-webkit-border-radius: 0 0 5px 5px;
+-moz-border-radius: 0 0 5px 5px;
+position: absolute;
+padding: 5px 0;
+display: none;
+z-index: 1000;
+right: 0;
+}
+#headerRight ul a {
+display: block;
+padding: 5px 10px;
+color: #999;
+-webkit-transition: none;
+-moz-transition: none;
+}
+
+            .photoListItemSmall {
+            border-bottom: 1px solid #DDD;
+            padding: 2px 0;
+            }
+            .photoListItemSmall .thumbnail {
+            float: left;
+            width: 100px;
+            text-align: center;
+            }
+            .photoListItemSmall .info {
+            margin-left: 105px;
+            }
+            .photoListItemSmall .thumbnail img {
+            max-width: 100px;
+            max-height: 80px;
+            }
+            .photoListItemSmall .info h3 {
+            font-size: 15px;
+            -webkit-transition: color .2s linear;
+            -moz-transition: color .2s linear;
+            }
+            .views {
+            background: url(http://s.haivl.com/content/images/view_icon.png) no-repeat transparent;
+            padding-left: 18px;
+            }

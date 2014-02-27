@@ -215,7 +215,7 @@ if (defined('ENVIRONMENT'))
      define('DB_NAME','baoveantam_hai');
      define('DB_USER','baoveantam_hai');
      define('DB_PASS','a123456');
-     define('ROT_DIR','/');
+     define('ROT_DIR','/gag');
      define('BASE_URL','http://nhucauvieclam.net/gag');
      define('CLIENT_ID','957752117319-navphphkvrojmn5hi44s2b5eur14nsop.apps.googleusercontent.com');
      define('SECRET_KEY','a-zolW-tXBD88mWlc1VByO2K');
