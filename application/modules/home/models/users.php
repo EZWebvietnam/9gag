@@ -81,6 +81,17 @@ class Users extends CI_Model
 		return NULL;
 
 	}
+    public function list_users_hot()
+    {
+        $sql="SELECT * FROM users WHERE total_like > 2000 ORDER BY total_like LIMIT 8";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    public function update_user($id,array $data)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('users',$data);
+    }
     function get_user_by_login_id($login)
 	{
 		$this->db->where('LOWER(login_id)=', strtolower($login));

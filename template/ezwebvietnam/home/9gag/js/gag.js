@@ -1760,15 +1760,6 @@ jQuery.noConflict();
                 var f = "https://plus.google.com/share?url=" + encodeURIComponent(window.location.href);
                 e._openWindow(f)
             },
-            _openPinterestShareDialog: function (l) {
-                l.preventDefault();
-                var i = b(this);
-                var j = i.attr("data-share");
-                var h = i.attr("data-img");
-                var g = i.attr("data-title");
-                var f = "//pinterest.com/pin/create/button/?url=" + encodeURIComponent(window.location.href) + "&media=" + encodeURIComponent(h) + "&description=" + g;
-                e._openWindow(f)window.location.href
-            },
             _openWindow: function (j) {
                 var g = 640;
                 var m = 460;
@@ -1780,7 +1771,7 @@ jQuery.noConflict();
                 b(e.selectors.CLICK_EVENT_SELECTOR_DELEGATE).on("click", ".badge-facebook-share", e._openFacebookShareDialog);
                 b(e.selectors.CLICK_EVENT_SELECTOR_DELEGATE).on("click", ".badge-twitter-share", e._openTwitterShareDialog);
                 b(e.selectors.CLICK_EVENT_SELECTOR_DELEGATE).on("click", ".badge-gplus-share", e._openGPlusShareDialog);
-                b(e.selectors.CLICK_EVENT_SELECTOR_DELEGATE).on("click", ".badge-pinterest-share", e._openPinterestShareDialog)
+
             }
         };
         return {
@@ -2315,7 +2306,7 @@ jQuery.noConflict();
             ENTRY_TW_SHARE: ".badge-twitter-share",
             ENTRY_TW_BOT_SHARE: ".badge-twitter-bot-share",
             ENTRY_GPLUS_SHARE: ".badge-gplus-share",
-            ENTRY_PIN_SHARE: ".badge-pinterest-share",
+
             ENTRY_EMAIL_SHARE: ".badge-email-share",
             ENTRY_NSFW_COVER: ".badge-nsfw-entry-cover",
             ENTRY_VIDEO_CONTAINER: ".badge-video-container",

@@ -6,6 +6,18 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         $this->data = array();
-    }   
+    }
+    public function load_post_hot()
+    {
+        $this->load->model('postmodel');
+        $list_post_hot = $this->postmodel->top_post_hot();
+        $this->data['list_post_hot'] = $list_post_hot;
+    }
+    public function user_hot()
+    {
+        $this->load->model('users');
+        $list_users_hot = $this->users->list_users_hot();
+        $this->data['list_users_hot'] = $list_users_hot;
+    }
 }
 ?>

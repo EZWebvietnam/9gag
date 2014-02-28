@@ -4,6 +4,8 @@ class Home extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        parent::load_post_hot();
+        parent::user_hot();
         $this->load->model('postmodel');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');

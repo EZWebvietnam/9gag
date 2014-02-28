@@ -28,6 +28,10 @@
       <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
       <![endif]-->
+      <?php 
+      if($_SERVER['SERVER_NAME'] != 'localhost')
+      {
+      ?>
       <script>(function(d, s, id) {
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) return;
@@ -36,6 +40,7 @@
          fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
       </script>
+        <?php } ?>
    </head>
    <body class="background-white">
       <div class="badge-sticky-subnav-static">
@@ -105,7 +110,7 @@
                                  href="<?php echo base_url();?>post/<?php echo $post['code']?>" 
                                  target="_blank" 
                                  data-evt="EntryAction,VotePointLinkUnderTitle,ListPage">
-                              <span class="badge-item-love-count">8,803</span> points</a> &middot;
+                              <span class="badge-item-love-count"><?php echo number_format($post['points'])?></span> points</a> &middot;
                               <a class="comment badge-evt" href="<?php echo base_url();?>post/<?php echo $post['code']?>#comment" target="_blank"
                                  data-evt="EntryAction,CommentLinkUnderTitle,ListPage" ><fb:comments-count href="<?php echo base_url();?>post/<?php echo $post['code']?>"/>
                            </fb:comments-count> comments</a>
@@ -123,8 +128,8 @@
                                     <li><a class="badge-item-vote-up up" href="javascript:void(0);">Upvote</a></li>
                                     <li><a class="badge-item-vote-down down" href="javascript:void(0);">Downvote</a></li>
                                     <?php } else {?>
-                                    <li><a class="vote-up up" >Upvote</a></li>
-                                    <li><a class="vote-down down">Downvote</a></li>
+                                    <li><a id="<?php echo $post['code']?>" class="vote-up up" >Upvote</a></li>
+                                    <li><a id="<?php echo $post['code']?>" class="vote-down down">Downvote</a></li>
                                     <?php } ?>
                                  </ul>
                                  <ul class="others">
@@ -197,83 +202,28 @@
                      <h3 class="topUsers">
                         Top danh hài
                      </h3>
-                     <ul class="topUsersSort topUsersSortHome">
-                        <li><a href="#" data-sort="week" class="selected">tuần</a> / </li>
-                        <li><a href="#" data-sort="month">tháng</a> / </li>
-                        <li><a href="#" data-sort="all">tất cả</a> </li>
-                     </ul>
+                    
                      <div class="clear">
                      </div>
                      <div id="topUserContent">
                         <div class="topUsers">
+                        <?php 
+                        foreach($list_users_hot as $user_hot)
+                        {
+                        ?>
                            <div class="item">
-                              <a href="/uploader/34951">
-                                 <img src="http://s.haivl.com/data/avatar/34951/e82bcb42664643c0ac861209c9886200/thumbnail.jpg">
+                              <a >
+                                 <img src="<?php echo $user_hot['img']?>"/>
                                  <div class="info">
-                                    <span class="name">CHIPKA - 칩카</span> <span class="likes">50.370</span>
+                                    <span class="name"><?php echo sub_string($user_hot['full_name'],7);?></span> <span class="likes"><?php echo $user_hot['total_like'];?></span>
                                  </div>
                               </a>
                            </div>
-                           <div class="item">
-                              <a href="/uploader/10926">
-                                 <img src="http://s.haivl.com/data/avatar/10926/7c993ff10e5048c4a7f1826d9209198d/thumbnail.jpg">
-                                 <div class="info">
-                                    <span class="name">nhathotinht...</span> <span class="likes">35.143</span>
-                                 </div>
-                              </a>
-                           </div>
-                           <div class="item">
-                              <a href="/uploader/329000">
-                                 <img src="http://s.haivl.com/data/avatar/329000/03683f8227c04f00931bd90e897ff2d0/thumbnail.jpg">
-                                 <div class="info">
-                                    <span class="name">Futaro Kudo</span> <span class="likes">28.255</span>
-                                 </div>
-                              </a>
-                           </div>
-                           <div class="item">
-                              <a href="/uploader/227444">
-                                 <img src="http://s.haivl.com/data/avatar/20140129/0a75440eff314414b685826b72593559/thumbnail-a407a646fab3417e84ad04102d0c6319.jpg">
-                                 <div class="info">
-                                    <span class="name">Nguyễn Trun...</span> <span class="likes">26.487</span>
-                                 </div>
-                              </a>
-                           </div>
-                           <div class="item">
-                              <a href="/uploader/56248">
-                                 <img src="http://s.haivl.com/data/avatar/56248/e24a4354c7974fee9f3f643eb43cc92f/thumbnail.jpg">
-                                 <div class="info">
-                                    <span class="name">Pi Joker</span> <span class="likes">19.067</span>
-                                 </div>
-                              </a>
-                           </div>
-                           <div class="item">
-                              <a href="/uploader/166231">
-                                 <img src="http://graph.facebook.com/100003281019991/picture?type=normal">
-                                 <div class="info">
-                                    <span class="name">May Ars</span> <span class="likes">17.184</span>
-                                 </div>
-                              </a>
-                           </div>
-                           <div class="item">
-                              <a href="/uploader/117853">
-                                 <img src="http://graph.facebook.com/100004455159447/picture?type=normal">
-                                 <div class="info">
-                                    <span class="name">Phát Manucian</span> <span class="likes">16.859</span>
-                                 </div>
-                              </a>
-                           </div>
-                           <div class="item">
-                              <a href="/uploader/35818">
-                                 <img src="http://s.haivl.com/data/avatar/20140203/2905a5d0321149c889f5b9ded9a07d3e/thumbnail-4b033335cd534fbf878a84418a14d4d4.jpg">
-                                 <div class="info">
-                                    <span class="name">Hài Vê Lờ</span> <span class="likes">14.779</span>
-                                 </div>
-                              </a>
-                           </div>
+                        <?php } ?>   
                         </div>
                         <div class="clear">
                         </div>
-                        <div class="moreTop"><a href="/top-user/week">xem thêm »</a></div>
+                       
                      </div>
                   </div>
                   <div class="box darkBox newestBox">
@@ -408,63 +358,37 @@
     <h3>
         Bài Hot</h3>
     <div>
+    <?php 
+    foreach($list_post_hot as $post_hot)
+    {
+    ?>
         <div class="photoListItemSmall">
-            <a href="/photo/2386406?ref=n1">
+            <a href="<?php echo base_url();?>post/<?php echo $post_hot['code']?>">
                 <div class="thumbnail">
-                    <img src="http://s2.haivl.com/data/photos2/20140225/8e37e0ed0814494084a105fcf31d0dc5/thumbnail-414d4c8804a547f9ac4a1fc780b3e239.jpg">
+                <?php 
+                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post_hot['code'].'/'.$post_hot['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post_hot['code'].'/'.$post_hot['img']))
+                {
+                ?>
+                    <img src="<?php echo base_url();?>file/uploads/post/<?php echo $post_hot['code']?>/<?php echo $post_hot['img']?>"/>
+                    <?php } else { ?>
+                    <img src="<?php echo base_url();?>file/uploads/no_image.gif"/>
+                    <?php } ?>
                 </div>
                 <div class="info">
                     <h3>
-                        Xếp đi. @@
+                        <?php echo $post_hot['title']?>
                     </h3>
                     <div class="stats">
-                        <span class="views" title="lượt xem">1.045</span>
+                        <span class="views" title="lượt xem"><?php echo $post_hot['count_view']?></span>
                         <span class="comments" title="lượt bình luận">12</span>
-                        <span class="likes" title="lượt thích">32</span>
+                        <span class="likes" title="lượt thích"><?php echo $post_hot['count_like']?></span>
                     </div>
                 </div>
                 <div class="clear">
                 </div>
             </a>
         </div>
-        <div class="photoListItemSmall">
-            <a href="/photo/2397963?ref=n2">
-                <div class="thumbnail">
-                    <img src="http://s2.haivl.com/data/photos2/20140227/bc3c747042ac43a1a20d71e8f9f56a27/thumbnail-5692dc56b87548f7be604169f0ab8d8b.jpg">
-                </div>
-                <div class="info">
-                    <h3>
-                        Đã tìm ra lý do phụ nữ thích hút thuốc lá <img class="emo" src="http://s.haivl.com/content/images/emo/static/laugh.png">
-                    </h3>
-                    <div class="stats">
-                        <span class="views" title="lượt xem">545</span>
-                        <span class="comments" title="lượt bình luận">1</span>
-                        <span class="likes" title="lượt thích">7</span>
-                    </div>
-                </div>
-                <div class="clear">
-                </div>
-            </a>
-        </div>
-        <div class="photoListItemSmall last">
-            <a href="/photo/2394991?ref=n3">
-                <div class="thumbnail">
-                    <img src="http://s2.haivl.com/data/photos2/20140226/d2107f85ac6c4dec9b18e8988ed959c2/thumbnail-f4209978e541495794bb235a8d49f4f2.jpg">
-                </div>
-                <div class="info">
-                    <h3>
-                        Bạn nào biết thì liên hệ giúp nha.Share luôn cho khổ chủ
-                    </h3>
-                    <div class="stats">
-                        <span class="views" title="lượt xem">1.612</span>
-                        <span class="comments" title="lượt bình luận">6</span>
-                        <span class="likes" title="lượt thích">13</span>
-                    </div>
-                </div>
-                <div class="clear">
-                </div>
-            </a>
-        </div>
+      <?php } ?> 
 </div>
 
 </div>
@@ -628,7 +552,57 @@
          </div>
       </div>
       <!--end #container-->
-      <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>        
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        $(document).on('click','.vote-up',function(event){
+                var contentPanelId = jQuery(this).attr("id");
+                $.ajax({
+                                                    type: "POST"
+                                                    , url: '<?php echo base_url();?>home/post/ajax_like_post'
+                                                    , data: { code: contentPanelId,type:0}
+                                                    , cache: false
+                                                    , dataType: "json"
+                                                    , success: function (data) {
+                                                        if (data != null) {
+                                                            if (data.msg == true) {
+                                                                alert('Vote thành công')
+                                                            }
+                                                            else
+                                                            {
+                                                               alert('Vote thất bại')
+                                                            }
+                                                        }
+                                                    }
+                                                });
+               
+        });
+        $(document).on('click','.vote-down',function(event){
+                var contentPanelId = jQuery(this).attr("id");
+                $.ajax({
+                                                    type: "POST"
+                                                    , url: '<?php echo base_url();?>home/post/ajax_like_post'
+                                                    , data: { code: contentPanelId,type:1}
+                                                    , cache: false
+                                                    , dataType: "json"
+                                                    , success: function (data) {
+                                                        if (data != null) {
+                                                            if (data.msg == true) {
+                                                                alert('Vote thành công')
+                                                            }
+                                                            else
+                                                            {
+                                                               alert('Vote thất bại')
+                                                            }
+                                                        }
+                                                    }
+                                                });
+               
+        });
+        
+    });
+
+      </script>        
       <script type="text/javascript" src="<?php echo base_url();?>template/ezwebvietnam/home/9gag/js/lib.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>template/ezwebvietnam/home/9gag/js/gag.js"></script>
       <div id="fb-root" style="display:none;"></div>

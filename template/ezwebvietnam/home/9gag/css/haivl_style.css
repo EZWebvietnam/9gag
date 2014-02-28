@@ -21,7 +21,7 @@
 				-webkit-box-shadow: 0 0 3px #888;
 				}
 				h3.topUsers {
-				background: url(http://s.haivl.com/content/images/smile_icon.png) no-repeat transparent;
+				background: url(../img/smile_icon.png) no-repeat transparent;
 				padding-left: 22px;
 				float: left;
 				}
@@ -70,7 +70,7 @@ div.topUsers .item img {
     float: left
 }
 				.likes {
-				background: url(http://s.haivl.com/content/images/like_icon.png) no-repeat transparent;
+				background: url(../img/like_icon.png) no-repeat transparent;
 				padding-left: 18px;
 				}
 				.clear {
@@ -135,7 +135,7 @@ float: right;
 margin-top: 6px;
 }
 #headerRight .notiButton {
-background: url(http://s.haivl.com/content/images/message_icon.png?v=1) no-repeat;
+background: url(../img/message_icon.png) no-repeat;
 text-align: right;
 width: 35px;
 margin-left: 5px;
@@ -195,6 +195,6 @@ color: #999;
             -moz-transition: color .2s linear;
             }
             .views {
-            background: url(http://s.haivl.com/content/images/view_icon.png) no-repeat transparent;
+            background: url(../img/view_icon.png) no-repeat transparent;
             padding-left: 18px;
             }
