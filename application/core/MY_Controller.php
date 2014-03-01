@@ -19,5 +19,11 @@ class MY_Controller extends CI_Controller
         $list_users_hot = $this->users->list_users_hot();
         $this->data['list_users_hot'] = $list_users_hot;
     }
+    public function new_post()
+    {
+        $this->load->model('postmodel');
+        $list_new_post = $this->postmodel->new_post();
+        $this->data['list_new_post'] = $list_new_post;
+    }
 }
 ?>

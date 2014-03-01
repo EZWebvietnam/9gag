@@ -6,11 +6,19 @@ class Postmodel extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-    public function load_home()
+    public function load_home($number,$offset)
     {
-        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1 ORDER BY posts.count_view DESC";
+        $number = intval($number);
+        $offset = intval($offset);
+        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1 ORDER BY posts.count_view DESC LIMIT $offset,$number";
         $query = $this->db->query($sql);
         return $query->result_array();
+    }
+     public function count_load_home()
+    {
+        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1";
+        $query = $this->db->query($sql);
+        return count($query->result_array());
     }
     public function load_post($code)
     {
@@ -43,6 +51,31 @@ class Postmodel extends CI_Model
         $this->db->where('id_user',$id_user);
         $this->db->where('id_post',$id_post);
         $query = $this->db->get('like_post');
+        return $query->result_array();
+    }
+    public function new_post()
+    {
+        $sql='SELECT * FROM posts  ORDER BY posts.id DESC LIMIT 3';
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    //
+    public function load_member_post($id)
+    {
+        $id = intval($id);
+        $this->db->select();
+        $this->db->where('id_user',$id);
+        $this->db->where('status',1);
+        $query = $this->db->get('posts');
+        return count($query->result_array());
+    }
+    public function load_member_post_query($id,$position,$limit)
+    {
+        $id = intval($id);
+        $position = intval($position);
+        $limit = intval($limit);
+        $sql="SELECT * FROM posts WHERE id_user = $id LIMIT $position,$limit";
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
 }

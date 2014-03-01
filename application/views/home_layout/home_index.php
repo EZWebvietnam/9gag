@@ -181,9 +181,14 @@
                      <?php } ?>
                      
                   </div>
+                  <?php 
+                  if($page<=$total_page && $total_page!=1)
+                  {
+                  ?>
                   <div class="loading">
-                     <a class="btn badge-load-more-post" href="/?id=aWZbP2A%2CaozLoL2%2CaxNRG0b&c=10" data-loading-text="Loading more posts...">Load more posts</a>
+                     <a class="btn badge-load-more-post" href="<?php echo base_url();?>page/<?php echo $page+1;?>" data-loading-text="Loading more posts...">Load more posts</a>
                   </div>
+                  <?php } ?>
                </section>
             </div>
             
@@ -230,63 +235,38 @@
     <h3>
         Bài mới</h3>
     <div>
+    <?php 
+    foreach($list_new_post as $new_post)
+    {
+    ?>
         <div class="photoListItemSmall">
-            <a href="/photo/2386406?ref=n1">
+            <a href="<?php echo base_url();?>post/<?php echo $new_post['code']?>">
                 <div class="thumbnail">
-                    <img src="http://s2.haivl.com/data/photos2/20140225/8e37e0ed0814494084a105fcf31d0dc5/thumbnail-414d4c8804a547f9ac4a1fc780b3e239.jpg">
+                <?php 
+                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$new_post['code'].'/'.$new_post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post_hot['code'].'/'.$post_hot['img']))
+                {
+                ?>
+                    <img src="<?php echo base_url();?>file/uploads/post/<?php echo $new_post['code']?>/<?php echo $new_post['img']?>"/>
+                    <?php } else {?>
+                    <img src="<?php echo base_url();?>file/uploads/no_image.gif"/>
+                    <?php } ?>
                 </div>
                 <div class="info">
                     <h3>
-                        Xếp đi. @@
+                        <?php echo $new_post['title'];?>
                     </h3>
                     <div class="stats">
-                        <span class="views" title="lượt xem">1.045</span>
-                        <span class="comments" title="lượt bình luận">12</span>
-                        <span class="likes" title="lượt thích">32</span>
+                        <span class="views" title="lượt xem"><?php echo $new_post['count_view']?></span>
+                        <span class="comments" title="lượt bình luận"><fb:comments-count href="<?php echo base_url();?>post/<?php echo $new_post['code']?>"/>
+                           </fb:comments-count></span>
+                        <span class="likes" title="lượt thích"><?php echo $new_post['count_like']?></span>
                     </div>
                 </div>
                 <div class="clear">
                 </div>
             </a>
         </div>
-        <div class="photoListItemSmall">
-            <a href="/photo/2397963?ref=n2">
-                <div class="thumbnail">
-                    <img src="http://s2.haivl.com/data/photos2/20140227/bc3c747042ac43a1a20d71e8f9f56a27/thumbnail-5692dc56b87548f7be604169f0ab8d8b.jpg">
-                </div>
-                <div class="info">
-                    <h3>
-                        Đã tìm ra lý do phụ nữ thích hút thuốc lá <img class="emo" src="http://s.haivl.com/content/images/emo/static/laugh.png">
-                    </h3>
-                    <div class="stats">
-                        <span class="views" title="lượt xem">545</span>
-                        <span class="comments" title="lượt bình luận">1</span>
-                        <span class="likes" title="lượt thích">7</span>
-                    </div>
-                </div>
-                <div class="clear">
-                </div>
-            </a>
-        </div>
-        <div class="photoListItemSmall last">
-            <a href="/photo/2394991?ref=n3">
-                <div class="thumbnail">
-                    <img src="http://s2.haivl.com/data/photos2/20140226/d2107f85ac6c4dec9b18e8988ed959c2/thumbnail-f4209978e541495794bb235a8d49f4f2.jpg">
-                </div>
-                <div class="info">
-                    <h3>
-                        Bạn nào biết thì liên hệ giúp nha.Share luôn cho khổ chủ
-                    </h3>
-                    <div class="stats">
-                        <span class="views" title="lượt xem">1.612</span>
-                        <span class="comments" title="lượt bình luận">6</span>
-                        <span class="likes" title="lượt thích">13</span>
-                    </div>
-                </div>
-                <div class="clear">
-                </div>
-            </a>
-        </div>
+    <?php } ?>
 </div>
 
 </div>
@@ -380,7 +360,8 @@
                     </h3>
                     <div class="stats">
                         <span class="views" title="lượt xem"><?php echo $post_hot['count_view']?></span>
-                        <span class="comments" title="lượt bình luận">12</span>
+                        <span class="comments" title="lượt bình luận"><fb:comments-count href="<?php echo base_url();?>post/<?php echo $post_hot['code']?>"/>
+                           </fb:comments-count></span>
                         <span class="likes" title="lượt thích"><?php echo $post_hot['count_like']?></span>
                     </div>
                 </div>

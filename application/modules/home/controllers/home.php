@@ -6,6 +6,7 @@ class Home extends MY_Controller
         parent::__construct();
         parent::load_post_hot();
         parent::user_hot();
+        parent::new_post();
         $this->load->model('postmodel');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -14,7 +15,27 @@ class Home extends MY_Controller
     }
     public function index()
     {
-        $this->data['list_post']=$this->postmodel->load_home();   
+        $config['uri_segment'] = 5;
+        $page = $this->uri->segment(2);
+        $config['per_page'] = 12;
+        $config['total_rows'] = $this->postmodel->count_load_home();
+        if ($page == '') {
+            $page = 1;
+        }
+        $page1 = ($page - 1) * $config['per_page'];
+       
+        if (!is_numeric($page)) {
+            show_404();
+            exit;
+        }
+       
+       $num_pages = ceil($config['total_rows']/ $config['per_page']);
+       $array_sv = $this->postmodel->load_home($config['per_page'], $page1);
+       $this->data['total_page'] = $num_pages;
+       $this->data['offset'] = $page1;
+       $this->data['page']=$page;
+       $this->data['total']=$config['total_rows'];
+       $this->data['list_post']=$array_sv;   
         $this->load->view('home_layout/home_index',$this->data);
     }
     public function google_signup()

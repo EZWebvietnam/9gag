@@ -2103,44 +2103,6 @@ jQuery.noConflict();
                     GAG.PostController.postCallback("postDidRestore", e)
                 }
             },
-            scanEntriesForArchive: function () {
-                var w = GAG.ListScrollingController;
-                var f = GAG.CacheController;
-                var v = f.getEntryHandler();
-                var s = GAG.ListController;
-                var m = v.getEntryList();
-                var o = b(a).height();
-                var u = o * 3;
-                var g = o * 4;
-                var r = GAG.PageController.getWindowEffectiveScrollTop();
-                if (!m || m.length == 0 || f.isUpdateNeeded(f.keys.ENTRY_LIST)) {
-                    f.parseEntryInfo();
-                    m = v.getEntryList();
-                    f.notifyForCacheUpdateCompleted(f.keys.ENTRY_LIST)
-                }
-                b(s.selectors.ENTRY_CONTAINER + ":not(.archived)").each(function () {
-                    var i = b(this);
-                    var z = i.data("entry-id");
-                    var y = v.getEntryInfoForKey(z, "height");
-                    var B = v.getEntryInfoForKey(z, "offset");
-                    var A = B.top;
-                    var x = B.top + y;
-                    if (x < r - u - y || A > r + g + y) {
-                        w.handlers.archiveContainer(i, y)
-                    }
-                });
-                for (var p = 0; p < m.length; p++) {
-                    var n = m[p];
-                    var q = v.getEntryInfoForKey(n, "height");
-                    var l = v.getEntryInfoForKey(n, "offset");
-                    var t = l.top;
-                    var e = l.top + q;
-                    if (e >= r - u - q && t <= r + g + q) {
-                        var j = b(s.selectors.ENTRY_CONTAINER_ID_PREFIX + n);
-                        w.handlers.extractContainer(j)
-                    }
-                }
-            },
             scanFeaturedItemForArchive: function () {
                 var v = GAG.ListScrollingController;
                 var f = GAG.CacheController;
@@ -2199,7 +2161,7 @@ jQuery.noConflict();
                 var g = Math.abs(h - this._lastScrollFeaturedPoint);
                 if (e > 1000) {
                     f._lastScrollEntryPoint = h;
-                    f.handlers.scanEntriesForArchive()
+                    
                 }
                 if (g > 1000) {
                     f._lastScrollFeaturedPoint = h;

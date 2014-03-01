@@ -198,3 +198,7 @@ color: #999;
             background: url(../img/view_icon.png) no-repeat transparent;
             padding-left: 18px;
             }
+            .comments {
+background: url(../img/comment_icon.png) no-repeat transparent;
+padding-left: 18px;
+}
