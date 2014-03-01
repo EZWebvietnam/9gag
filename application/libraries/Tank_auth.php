@@ -142,7 +142,6 @@ class Tank_auth
 
 		// See http://codeigniter.com/forums/viewreply/662369/ as the reason for the next line
 		$this->ci->session->set_userdata(array('user_id' => '', 'username' => '', 'status' => ''));
-
 		$this->ci->session->sess_destroy();
 	}
 

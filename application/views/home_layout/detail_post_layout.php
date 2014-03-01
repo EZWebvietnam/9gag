@@ -31,62 +31,7 @@
    </head>
    <body class="background-white">
       <div class="badge-sticky-subnav-static">
-         <header id="top-nav" class="badge-sticky-nav">
-            <div class="nav-wrap">
-               <h1><a href="http://9gag.com">9GAG</a></h1>
-               <div class="headbar-items">
-                  <ul>
-                     <li><a class="" href="http://9gag.com/hot"><span class="label">Hot</span></a></li>
-                     <li><a class="" href="http://9gag.com/trending"><span class="label">Trending</span></a></li>
-                     <li><a class="" href="http://9gag.com/fresh"><span class="label">Fresh</span></a></li>
-                     <li><a target="_blank" onclick="GAG.GA.track('Navigation-Menu','Clicked-Outer-Link', 'http://9gag.tv?ref=9nav');" href="http://9gag.tv?ref=9nav"><span class="label ">TV</span></a></li>
-                     <li><a target="_blank" onclick="GAG.GA.track('Navigation-Menu','Clicked-Outer-Link', 'http://9gag.com/girl?ref=9nav');" href="http://9gag.com/girl?ref=9nav"><span class="label new">Girl</span></a></li>
-                     <li><a id="jsid-header-funny-menu" href="javascript: void(0);"><span class="label">More <span class="drop-arrow"></span></span></a></li>
-                  </ul>
-               </div>
-               <div id="jsid-header-funny-menu-items" class="popup-menu funny hide badge-popup-menu">
-                  <span class="arrow-wrap">
-                  <span class="arrow"></span>
-                  </span>
-                  <ul>
-                     <li><a class="" href="http://9gag.com/gif">GIF</a></li>
-                     <li><a class="" href="http://9gag.com/nsfw">NSFW</a></li>
-                     <li><a class="" href="http://9gag.com/cute">Cute</a></li>
-                     <li><a class="" href="http://9gag.com/geeky">Geeky</a></li>
-                     <li><a class="" href="http://9gag.com/cosplay">Cosplay</a></li>
-                     <li><a class="" href="http://9gag.com/meme">Meme</a></li>
-                     <li><a class="" href="http://9gag.com/timely">Timely</a></li>
-                     <li><a class="" href="http://9gag.com/girl">Girl</a></li>
-                     <li><a class="" href="http://9gag.com/food">Food</a></li>
-                  </ul>
-               </div>
-               <div class="visitor-function">
-                  <a class="badge-login-button link" href="https://9gag.com/login">Log in</a>
-                  <a class="badge-signup-button link" href="https://9gag.com/signup">Sign up</a>        
-                  <div class="upload">
-                     <a class="badge-signup-button upload" href="https://9gag.com/signup">Upload</a>
-                  </div>
-               </div>
-               <div class="download-function">
-                  <a id="jsid-header-download-menu" class="mobile" href="javascript:void(0);">Mobile</a>
-                  <div id="jsid-header-download-menu-items" class="popup-menu download hide">
-                     <span class="arrow-wrap">
-                     <span class="arrow"></span>
-                     </span>
-                     <ul>
-                        <li><a href="http://9gag.com/iphone" target="_blank" onclick="GAG.GA.track('iPhone-App', 'Clicked-Download', 'Nav');">Download for iOS</a></li>
-                        <li><a href="http://9gag.com/android" target="_blank" onclick="GAG.GA.track('Android-App', 'Clicked-Download', 'Nav');">Download for Android</a></li>
-                        <li><a href="http://9gag.com/blackberry" target="_blank" onclick="GAG.GA.track('Blackberry-App', 'Clicked-Download', 'Nav');">Download for Blackberry</a></li>
-                     </ul>
-                  </div>
-               </div>
-               <form id="headbar-search" class="badge-header-search" action="http://9gag.com/search">
-                  <input type="text" name="query" id="jsid-search-input" class="ui-autocomplete-input search search_input" data-placeholder="Search&#8230;" tabindex="1" />
-                  <div class="ui-widget"></div>
-               </form>
-               <div class="clearfix"></div>
-            </div>
-         </header>
+         <?php include('header.php');?>
       </div>
       <div class="toast toast-color- badge-toast-container" style="display:none">
          <p class="close">

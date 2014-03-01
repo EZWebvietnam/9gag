@@ -238,5 +238,30 @@ class CI_Session {
 			}
 		}
 	}
+	function sess_destroy()
+    {
+
+        // Kill the session DB row
+
+        if ($this->sess_use_database === true && isset($this->userdata['session_id'])) {
+
+            $this->CI->db->where('session_id', $this->userdata['session_id']);
+
+            $this->CI->db->delete($this->sess_table_name);
+
+        }
+
+
+        // Kill the cookie
+
+        setcookie($this->sess_cookie_name, addslashes(serialize(array())), ($this->now -
+            31500000), $this->cookie_path, $this->cookie_domain, 0);
+
+
+        // Kill session data
+
+        $this->userdata = array();
+
+    }
 }
 ?>

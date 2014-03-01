@@ -34,17 +34,17 @@ $(document).ready(function(){
                      <li id="sub_li_2"><a href="/builder/memes">Chế memeChế memeChế meme</a></li>        
                 </ul>
             </li>
-            <li><a href="/unread">Bài mới</a></li>
+            <li><a href="<?php echo base_url();?>new">Bài mới</a></li>
             <li><a href="/vote">Bình chọn</a></li>
-			<li><a target="_blank" href="http://haivl.tv/">Bài hot</a></li>
-		      <li><a target="_blank" href="http://haivl.tv/">Viết bài</a></li>
+			<li><a target="_blank" href="<?php echo base_url();?>hot">Bài hot</a></li>
+		    
             
             <li id="parent" style="cursor:pointer;">
-                <span><a href="/hot">Chế ảnh</a></span>
+                <span><a href="#">Viết bài</a></span>
                 <ul id="sub">
-                    <li id="sub_li"><a href="/builder/rage">Chế rage comic</a></li>    
-                    <li id="sub_li"><a href="/builder/memes">Chế meme</a></li>
-                     <li id="sub_li"><a href="/builder/memes">Chế memeChế memeChế meme</a></li>        
+                    <li id="sub_li"><a href="<?php echo base_url();?>thanh-vien/post">Đăng bài</a></li>    
+                    <li id="sub_li"><a href="<?php echo base_url();?>thanh-vien/img">Đăng ảnh</a></li>
+                            
                 </ul>
             </li>
         </ul>
@@ -64,7 +64,7 @@ if(!$this->tank_auth->is_logged_in())
 
         
         <div id="jsid-header-user-menu" class="avatar">
-            <a class="avatar-container" href="javascript:void(0);">
+            <a class="avatar-container" href="<?php echo base_url();?>thanh-vien">
                 <img src="<?php echo $this->session->userdata('img');?>" alt="Avatar">
                 <span class="name">Me</span>
             </a>

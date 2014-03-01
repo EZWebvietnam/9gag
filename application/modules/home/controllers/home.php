@@ -35,8 +35,61 @@ class Home extends MY_Controller
        $this->data['offset'] = $page1;
        $this->data['page']=$page;
        $this->data['total']=$config['total_rows'];
-       $this->data['list_post']=$array_sv;   
-        $this->load->view('home_layout/home_index',$this->data);
+       $this->data['list_post']=$array_sv;
+       $this->data['main_content']='home_view';
+       $this->load->view('home_layout/home_index',$this->data);
+    }
+    public function hot_post()
+    {
+        $config['uri_segment'] = 5;
+        $page = $this->uri->segment(3);
+        $config['per_page'] = 12;
+        $config['total_rows'] = $this->postmodel->count_hot_post();
+        if ($page == '') {
+            $page = 1;
+        }
+        $page1 = ($page - 1) * $config['per_page'];
+       
+        if (!is_numeric($page)) {
+            show_404();
+            exit;
+        }
+       
+       $num_pages = ceil($config['total_rows']/ $config['per_page']);
+       $array_sv = $this->postmodel->load_hot_post($config['per_page'], $page1);
+       $this->data['total_page'] = $num_pages;
+       $this->data['offset'] = $page1;
+       $this->data['page']=$page;
+       $this->data['total']=$config['total_rows'];
+       $this->data['list_post']=$array_sv; 
+       $this->data['main_content']='hot_view';  
+       $this->load->view('home_layout/home_index',$this->data);
+    }
+    public function new_post()
+    {
+        $config['uri_segment'] = 5;
+        $page = $this->uri->segment(3);
+        $config['per_page'] = 12;
+        $config['total_rows'] = $this->postmodel->count_new_post();
+        if ($page == '') {
+            $page = 1;
+        }
+        $page1 = ($page - 1) * $config['per_page'];
+       
+        if (!is_numeric($page)) {
+            show_404();
+            exit;
+        }
+       
+       $num_pages = ceil($config['total_rows']/ $config['per_page']);
+       $array_sv = $this->postmodel->load_new_post($config['per_page'], $page1);
+       $this->data['total_page'] = $num_pages;
+       $this->data['offset'] = $page1;
+       $this->data['page']=$page;
+       $this->data['total']=$config['total_rows'];
+       $this->data['list_post']=$array_sv; 
+       $this->data['main_content']='new_view';  
+       $this->load->view('home_layout/home_index',$this->data);
     }
     public function google_signup()
     {

@@ -20,6 +20,34 @@ class Postmodel extends CI_Model
         $query = $this->db->query($sql);
         return count($query->result_array());
     }
+    public function load_hot_post($number,$offset)
+    {
+        $number = intval($number);
+        $offset = intval($offset);
+        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1 ORDER BY posts.count_like DESC LIMIT $offset,$number";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+     public function count_hot_post()
+    {
+        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1";
+        $query = $this->db->query($sql);
+        return count($query->result_array());
+    }
+    public function load_new_post($number,$offset)
+    {
+        $number = intval($number);
+        $offset = intval($offset);
+        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1 ORDER BY posts.id DESC LIMIT $offset,$number";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+     public function count_new_post()
+    {
+        $sql = "SELECT *,cate.id as id_cate,posts.id as id_post FROM posts INNER JOIN cate ON cate.id = posts.id_cate WHERE status = 1";
+        $query = $this->db->query($sql);
+        return count($query->result_array());
+    }
     public function load_post($code)
     {
         $code = addslashes($code);
@@ -77,6 +105,11 @@ class Postmodel extends CI_Model
         $sql="SELECT * FROM posts WHERE id_user = $id LIMIT $position,$limit";
         $query = $this->db->query($sql);
         return $query->result_array();
+    }
+    public function insert_post(array $data)
+    {
+        $this->db->insert('posts',$data);
+        return $this->db->insert_id();
     }
 }
 ?>

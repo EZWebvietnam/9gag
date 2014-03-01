@@ -41,6 +41,13 @@
 $route['default_controller'] = "home/index";
 
 $route['trang-chu'] = "home/index";
+$route['thanh-vien'] = "home/member/post";
+$route['thanh-vien/post'] = "home/member/post_thread";
+$route['thanh-vien/img'] = "home/member/post_imae";
+$route['hot'] = "home/hot_post";
+$route['hot/page/(:any)'] = "home/hot_post";
+$route['new'] = "home/new_post";
+$route['new/page/(:any)'] = "home/new_post";
 $route['post/(:any)'] = "home/post/detail/$1";
 $route['page/(:any)'] = "home/index";
 $route['google-signup'] = "home/google_signup";
