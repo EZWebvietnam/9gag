@@ -190,7 +190,7 @@ $(document).ready(function(){
             <a href="<?php echo base_url();?>post/<?php echo $new_post['code']?>">
                 <div class="thumbnail">
                 <?php 
-                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$new_post['code'].'/'.$new_post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$new_post['code'].'/'.$new_post['img']))
+                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$new_post['code'].'/'.$new_post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$new_post['code'].'/'.$new_post['img']))
                 {
                 ?>
                     <img src="<?php echo base_url();?>file/uploads/post/<?php echo $new_post['code']?>/<?php echo $new_post['img']?>"/>

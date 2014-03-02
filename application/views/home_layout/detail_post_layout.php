@@ -440,6 +440,10 @@
                      </form>
                   </section>
                </section>
+               <?php 
+               if(!$this->tank_auth->is_logged_in())
+               {
+               ?>
                <section class="modal signup hide badge-overlay-signup-fb">
                   <a class="badge-overlay-close btn-close" href="#">&#10006;</a>
                   <section id="signup">
@@ -506,6 +510,7 @@
                      </div>
                   </section>
                </section>
+               <?php } ?>
                <div id="jsid-modal-post-zoom" class="hide" style="height: 100%;">
                   <div class="badge-post-zoom-img zoom-container">			
                   </div>

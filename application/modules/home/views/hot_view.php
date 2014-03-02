@@ -79,7 +79,7 @@ $(document).ready(function(){
                                  ?>
                              <?php echo $post['content']?>
                              <?php } else {
-                                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post['code'].'/'.$post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post['code'].'/'.$post['img']))
+                                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$post['code'].'/'.$post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$post['code'].'/'.$post['img']))
                                 {
                                 ?>
                               <img width="500" class="badge-item-img" src="<?php echo base_url();?>file/uploads/post/<?php echo $post['code']?>/<?php echo $post['img']?>" alt="<?php echo $post['title']?>"/>
@@ -188,7 +188,7 @@ $(document).ready(function(){
             <a href="<?php echo base_url();?>post/<?php echo $new_post['code']?>">
                 <div class="thumbnail">
                 <?php 
-                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$new_post['code'].'/'.$new_post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post_hot['code'].'/'.$post_hot['img']))
+                if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$new_post['code'].'/'.$new_post['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$new_post['code'].'/'.$new_post['img']))
                 {
                 ?>
                     <img src="<?php echo base_url();?>file/uploads/post/<?php echo $new_post['code']?>/<?php echo $new_post['img']?>"/>

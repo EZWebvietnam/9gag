@@ -1,7 +1,7 @@
 
 <header id="top-nav" class="badge-sticky-nav">
             <div class="nav-wrap">
-    <h1><a href="http://9gag.com">9GAG</a></h1>
+    <h1><a href="<?php echo base_url();?>">9GAG</a></h1>
 
     
 <div class="headbar-items">
@@ -25,7 +25,7 @@ $(document).ready(function(){
 });
 </script>
     <ul id="menuBar">
-           <li class="selected"><a href="/">Trang chủ</a></li>
+           <li class="selected"><a href="<?php echo base_url();?>">Trang chủ</a></li>
             <li  id="parent2" style="cursor:pointer;">
                 <span><a href="/hot">Kênh</a></span>
                 <ul id="sub_2">

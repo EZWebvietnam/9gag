@@ -13,7 +13,7 @@ class Member extends MY_Controller
     {
         if(!$this->tank_auth->is_logged_in())
         {
-            redirect(ROT_DIR);
+            redirect('/');
         }
         $id_user = $this->session->userdata('user_id');
         $total_page = $this->postmodel->load_member_post($id_user);
@@ -43,7 +43,7 @@ class Member extends MY_Controller
         {
             $code = rand_string(6);
             $this->load->library('upload');
-            $image_upload_folder = $_SERVER['DOCUMENT_ROOT'] . ROT_DIR . 'file/uploads/post/'.$code;
+            $image_upload_folder = $_SERVER['DOCUMENT_ROOT'] . ROT_DIR . '/file/uploads/post/'.$code;
             if (!file_exists($image_upload_folder)) {
                 mkdir($image_upload_folder, DIR_WRITE_MODE, true);
             }
@@ -100,7 +100,7 @@ class Member extends MY_Controller
         {
             $code = rand_string(6);
             $this->load->library('upload');
-            $image_upload_folder = $_SERVER['DOCUMENT_ROOT'] . ROT_DIR . 'file/uploads/post/'.$code;
+            $image_upload_folder = $_SERVER['DOCUMENT_ROOT'] . ROT_DIR . '/file/uploads/post/'.$code;
             if (!file_exists($image_upload_folder)) {
                 mkdir($image_upload_folder, DIR_WRITE_MODE, true);
             }

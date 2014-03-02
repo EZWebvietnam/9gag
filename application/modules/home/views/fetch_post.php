@@ -11,8 +11,9 @@
                            </h2>
                            <p class="post-meta">
                               <a class="badge-evt point" id="love-count-<?php echo $post_user['code']?>" href="<?php echo base_url();?>post/<?php echo $post_user['code']?>" target="_blank" data-evt="EntryAction,VotePointLinkUnderTitle,ProfilePageUpload">
-                              <span class="badge-item-love-count">1</span> points</a> ·
-                              <a class="comment badge-evt" href="<?php echo base_url();?>post/<?php echo $post_user['code']?>#comment" target="_blank" data-evt="EntryAction,CommentLinkUnderTitle,ProfilePageUpload">0 comments</a>
+                              <span class="badge-item-love-count"><?php echo $post_user['points']?></span> points</a> ·
+                              <a class="comment badge-evt" href="<?php echo base_url();?>post/<?php echo $post_user['code']?>#comment" target="_blank" data-evt="EntryAction,CommentLinkUnderTitle,ProfilePageUpload"><fb:comments-count href="<?php echo base_url();?>post/<?php echo $post_user['code']?>"/>
+                           </fb:comments-count> comments</a>
                            </p>
                            <div class="badge-entry-sticky-shadow sticky-action">
                               <div class="badge-entry-sticky" style="position: relative; z-index: 1;">
@@ -30,7 +31,8 @@
                            <div class="">
                               <a href="<?php echo base_url();?>post/<?php echo $post_user['code']?>" class="badge-evt badge-track badge-track-no-follow" data-evt="EntryAction,EntryImageRedirect,ProfilePageUpload" data-track="post,c,,,d,aPvXRWG,l" style="min-height:280.4347826087px;" target="_blank">
                               <?php 
-                              if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post_user['code'].'/'.$post_user['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'file/uploads/post/'.$post_user['code'].'/'.$post_user['img']))
+                              
+                              if(file_exists($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$post_user['code'].'/'.$post_user['img']) && is_file($_SERVER['DOCUMENT_ROOT'].ROT_DIR.'/file/uploads/post/'.$post_user['code'].'/'.$post_user['img']))
                               {
                               ?>
                               <img class="badge-item-img" src="<?php echo base_url();?>file/uploads/post/<?php echo $post_user['code']?>/<?php echo $post_user['img']?>" alt="<?php echo $post_user['title']?>"/>

@@ -16,8 +16,14 @@
          <div class="badge-toolbar-pre fixed-wrap-post-bar">
             <div class="badge-entry-toolbar-sticky post-afterbar-a in-post-top">
                <ul class="badge-item-vote-container horizontal-vote">
+                    <?php if(!$this->tank_auth->is_logged_in())
+                    {?>
                   <li><a class="badge-item-vote-up up" href="javascript:void(0);"><span>UP</span></a></li>
                   <li><a class="badge-item-vote-down down" href="javascript:void(0);"><span>DOWN</span></a></li>
+                  <?php } else {?>
+                  <li><a id="<?php echo $post[0]['code']?>" class="badge-item-vote-up-u up"><span>UP</span></a></li>
+                  <li><a id="<?php echo $post[0]['code']?>" class="badge-item-vote-down-d down"><span>DOWN</span></a></li>
+                  <?php } ?>
                </ul>
                <div class="share">
                   <ul>
@@ -81,6 +87,56 @@
          </div>
       </div>
       <div id="fb-root"></div>
+      <script>
+      $(document).ready(function() {
+        $(document).on('click','.badge-item-vote-up-u',function(event){
+                var contentPanelId = jQuery(this).attr("id");
+                $.ajax({
+                                                    type: "POST"
+                                                    , url: '<?php echo base_url();?>home/post/ajax_like_post'
+                                                    , data: { code: contentPanelId,type:0}
+                                                    , cache: false
+                                                    , dataType: "json"
+                                                    , success: function (data) {
+                                                        if (data != null) {
+                                                            if (data.msg == true) {
+                                                                alert('Vote thành công')
+                                                            }
+                                                            else
+                                                            {
+                                                               alert('Vote thất bại')
+                                                            }
+                                                        }
+                                                    }
+                                                });
+               
+        });
+        $(document).on('click','.badge-item-vote-down-d',function(event){
+                var contentPanelId = jQuery(this).attr("id");
+                $.ajax({
+                                                    type: "POST"
+                                                    , url: '<?php echo base_url();?>home/post/ajax_like_post'
+                                                    , data: { code: contentPanelId,type:1}
+                                                    , cache: false
+                                                    , dataType: "json"
+                                                    , success: function (data) {
+                                                        if (data != null) {
+                                                            if (data.msg == true) {
+                                                                alert('Vote thành công')
+                                                            }
+                                                            else
+                                                            {
+                                                               alert('Vote thất bại')
+                                                            }
+                                                        }
+                                                    }
+                                                });
+               
+        });
+        
+    });
+
+      </script>
       <script>(function(d, s, id) {
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) return;

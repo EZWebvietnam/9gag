@@ -40,7 +40,7 @@ class Post extends MY_Controller
                 case 0:
                 {
                     $this->load->model('users');
-                    $detail_like_post = $this->postmodel->get_like_post($this->session->userdata('user_id'),$detail_post[0]['id']);
+                    $detail_like_post = $this->postmodel->get_like_post($this->session->userdata('user_id'),$detail_post[0]['id_post']);
                    
                     if(empty($detail_like_post))
                     {
@@ -51,7 +51,7 @@ class Post extends MY_Controller
                         $point = $detail_post[0]['points']+2;
                         $data_save = array('count_like'=>$count_like,'points'=>$point);
                         $this->postmodel->update_post($code,$data_save);
-                        $data_insert = array('id_post'=>$detail_post[0]['id'],'id_user'=>$this->session->userdata('user_id'),'create_date'=>strtotime('now'));
+                        $data_insert = array('id_post'=>$detail_post[0]['id_post'],'id_user'=>$this->session->userdata('user_id'),'create_date'=>strtotime('now'));
                         $id = $this->postmodel->insert_like_post($data_insert);
                         if($id>0)
                         {
